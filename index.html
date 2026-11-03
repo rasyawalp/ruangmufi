@@ -898,6 +898,93 @@
     font-size: 21px;
   }
 }
+
+/* PASSWORD KHUSUS GALERI MUFI */
+
+.gallery-lock {
+  max-width: 430px;
+  margin: 20px auto;
+  padding: 38px 28px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.gallery-lock-symbol {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  border: 1px solid #d9c6b4;
+  border-radius: 50%;
+  color: var(--purple);
+  font-size: 25px;
+}
+
+.gallery-lock h2 {
+  margin: 0 0 12px;
+  font-size: 27px;
+}
+
+.gallery-lock > p {
+  margin: 0 0 23px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.gallery-lock input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  outline: none;
+  background: #fffdf9;
+  color: var(--dark-brown);
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.gallery-lock input:focus {
+  border-color: var(--purple);
+}
+
+.gallery-lock #galleryPasswordError {
+  min-height: 20px;
+  margin: 10px 0 0;
+  color: #a45555;
+  font-size: 12px;
+}
+
+.gallery-lock-footer {
+  display: block;
+  margin-top: 25px;
+  color: #b2a092;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.article-video {
+  margin: 28px 0;
+}
+
+.article-video video {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  border-radius: 5px;
+  background: #eee4d9;
+}
+
+.article-video figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
   </style>
 </head>
 
@@ -983,6 +1070,8 @@
     */
 
     const PASSWORD = "mufi1502";
+
+const GALLERY_PASSWORD = "AKUSAYANGDIA";
 
     const sections = [
       {
@@ -1728,6 +1817,403 @@ const letterArticles = [
       "100-hari": []
     };
 
+
+const sevenDayArticle = {
+  title: "Tujuh Hari, Sebuah Perjalanan untuk Mufi",
+  subtitle:
+    "Perjalanan dari Bekasi menuju Porong. Sebuah perjalanan yang awalnya terasa mustahil, tetapi akhirnya menjadi salah satu kenangan yang tidak akan kulupakan.",
+  category: "CATATAN PERJALANAN",
+  author: "Rasya Syawal Pratama",
+  date: "Sebuah perjalanan untuk Mufi",
+
+  content: [
+    {
+      type: "heading",
+      text: "Kabar yang Datang Terlambat"
+    },
+    {
+      type: "paragraph",
+      text: "Aku baru mengetahui kabar kepergian Mufi pada malam hari, sekitar pukul 23.40. Padahal, Mufi sudah berpulang sekitar pukul 08.30 pagi dan dimakamkan setelah salat Jumat. Semuanya terasa begitu terlambat untukku."
+    },
+    {
+      type: "paragraph",
+      text: "Awalnya aku tidak benar-benar memahami apa yang sedang terjadi. Dete, teman Mufi, mengunggah sebuah story dengan tulisan “heaven” atau surga. Ditambah dengan status WhatsApp terakhir Mufi, perlahan aku mulai menyadari bahwa Mufi sudah tidak ada."
+    },
+    {
+      type: "paragraph",
+      text: "Aku menangis selama kurang lebih tiga hari. Bahkan pada Senin pagi, air mata itu masih belum berhenti. Baru pada Senin siang menjelang sore, pikiranku mulai bisa menerima satu hal: aku harus datang ke makam Mufi."
+    },
+    {
+      type: "heading",
+      text: "Mencari Jalan untuk Datang"
+    },
+    {
+      type: "paragraph",
+      text: "Aku kemudian menghubungi Dete untuk meminta alamat makam Mufi. Dete memberikan petunjuk yang cukup lengkap. Pada 30 Juni pukul 03.14 dini hari, aku kembali menghubungi Galuh untuk memastikan alamat tersebut. Di luar dugaanku, Galuh justru menawarkan diri untuk menemaniku berziarah."
+    },
+    {
+      type: "paragraph",
+      text: "Akhirnya, pada Rabu, 1 Juli, aku berangkat dari Bekasi menuju Surabaya. Perasaanku campur aduk. Ada rasa senang karena bisa kembali ke Jawa, tetapi aku sama sekali tidak menyukai alasan di balik perjalanan ini."
+    },
+    {
+      type: "paragraph",
+      text: "Sepanjang perjalanan, aku banyak berbincang dengan Galuh. Dari obrolan itu, aku baru tahu bahwa Galuh ternyata pernah berada di kelompok mentoring yang sama denganku dan menjadi satu-satunya anggota yang masih ada di sana. Aku juga mengetahui bahwa Galuh lebih tua empat bulan dari Mufi."
+    },
+    {
+      type: "heading",
+      text: "Malam Panjang di Stasiun"
+    },
+    {
+      type: "paragraph",
+      text: "Ketika kereta semakin dekat dengan Babat, pikiranku mulai dipenuhi berbagai pertanyaan. Bagaimana nanti ketika sampai? Di mana aku harus menunggu? Apakah ada tempat untuk mandi dan masjid di sekitar stasiun?"
+    },
+    {
+      type: "paragraph",
+      text: "Aku mencari informasi tentang Stasiun Surabaya Pasar Turi. Ternyata ada area tunggu dan masjid. Saat itu sedang libur sekolah, sehingga stasiun masih cukup ramai meskipun waktu sudah menunjukkan sekitar pukul satu atau dua dini hari."
+    },
+    {
+      type: "paragraph",
+      text: "Aku menghabiskan bekal yang masih tersisa di dalam stasiun. Namun, seorang petugas memintaku menunggu di luar. Suasana di luar masih cukup ramai, tetapi terasa sunyi dan dingin. Aku bahkan sempat bertanya-tanya, apakah udara memang sedingin itu atau tubuhku yang sedang gemetar karena perasaan sendiri."
+    },
+    {
+      type: "paragraph",
+      text: "Awalnya aku mempertimbangkan untuk mandi di Stasiun Surabaya Gubeng karena mengetahui ada fasilitas shower di sana. Namun, akhirnya aku memilih datang ke masjid dekat Pasar Turi sekitar setengah jam sebelum waktu Subuh."
+    },
+    {
+      type: "paragraph",
+      text: "Masjid itu memiliki area untuk beristirahat. Ada tulisan yang melarang mandi dan menjelaskan bahwa toilet hanya digunakan untuk buang air kecil. Aku akhirnya tetap membersihkan diri sebisaku, kemudian berwudu dan melaksanakan salat tahiyatul masjid."
+    },
+    {
+      type: "paragraph",
+      text: "Aku mengirimkan Al-Fatihah untuk Mufi. Saat itu aku mengenakan kaus bergambar Trisha JKT48. Sempat terpikir, jangan-jangan orang yang melihatku akan mengira aku datang ke Surabaya untuk menghadiri acara JKT48."
+    },
+    {
+      type: "paragraph",
+      text: "Aku salat di dekat pintu pembatas antara area laki-laki dan perempuan. Tiba-tiba ada seorang perempuan berlari dan menutup pintu itu dengan cukup keras hingga membuatku terkejut. Setelah itu, aku kembali mengirimkan Al-Fatihah untuk Mufi."
+    },
+    {
+      type: "quote",
+      text: "Kenapa harus Mufi? Kenapa dia pergi lebih dulu?"
+    },
+    {
+      type: "paragraph",
+      text: "Pertanyaan itu terus muncul di pikiranku. Rasanya berat sekali, tetapi aku mencoba menguatkan diri. Setelah selesai, aku melihat sepatuku sudah tersusun rapi oleh seseorang. Hal kecil, tetapi cukup membekas di tengah malam yang panjang itu."
+    },
+    {
+      type: "heading",
+      text: "Menuju Porong"
+    },
+    {
+      type: "paragraph",
+      text: "Setelah kembali ke stasiun, aku menunggu kereta pukul enam pagi menuju Gubeng. Stasiun cukup ramai karena libur tengah tahun. Aku sempat sedikit panik memikirkan tempat duduk, padahal perjalanannya hanya satu stasiun."
+    },
+    {
+      type: "paragraph",
+      text: "Pemandangan matahari terbit dari jendela kereta terasa indah sekali. Namun, ketika sampai di Gubeng, muncul pikiran yang sulit dijelaskan. Biasanya aku datang ke Surabaya untuk bersenang-senang. Kali ini, aku datang dengan alasan yang sangat berbeda."
+    },
+    {
+      type: "paragraph",
+      text: "Kalau kuingat kembali, pagi itu rasanya tidak ada orang yang tersenyum. Seolah-olah tidak ada kebahagiaan sama sekali. Mungkin itu hanya perasaanku karena sedang berduka, tetapi begitulah suasana yang tertinggal dalam ingatanku."
+    },
+    {
+      type: "paragraph",
+      text: "Aku kemudian naik kereta menuju Porong. Aku duduk menghadap ke belakang di kereta paling belakang, yaitu kereta nomor enam. Aku mengabari Galuh bahwa aku sedang dalam perjalanan."
+    },
+    {
+      type: "image",
+      src: "7hari1.jpg",
+      caption: "Perjalanan kereta menuju Porong."
+    },
+    {
+      type: "paragraph",
+      text: "Sepanjang perjalanan, aku menikmati pemandangan dan memperhatikan sistem persinyalan kereta yang masih menggunakan petugas secara manual. Hal seperti itu jarang kulihat di daerah Bekasi dan Jakarta."
+    },
+    {
+      type: "paragraph",
+      text: "Ketika kereta melewati Wonokromo, aku mulai bersiap melewati Royal Plaza, tempat pertama sekaligus terakhir kalinya aku bertemu Mufi. Rasanya seperti baru kemarin. Sulit dipercaya bahwa sekarang aku sedang menuju kota tempat Mufi dimakamkan."
+    },
+    {
+      type: "paragraph",
+      text: "Kereta sempat mengalami keterlambatan sekitar 20 sampai 25 menit. Saat tiba di Stasiun Sidoarjo, aku akhirnya mengabari Ibu untuk pertama kalinya sejak berangkat. Aku juga terus memberi kabar kepada Galuh setiap kali kereta tiba di stasiun."
+    },
+    {
+      type: "paragraph",
+      text: "Ketika sampai di Tanggulangin, aku memberi tahu Galuh bahwa sebentar lagi akan tiba. Ternyata Galuh sudah menunggu. Karena aku duduk di kereta paling belakang dan tidak ada peron di tempatku turun, aku harus berjalan ke depan untuk keluar."
+    },
+    {
+      type: "image",
+      src: "7hari2.jpg",
+      caption: "Sesaat sebelum bertemu Galuh di Stasiun Porong."
+    },
+    {
+      type: "paragraph",
+      text: "Sebelum turun, aku sempat mengirim foto kepada Galuh. Aku juga bertanya apakah dia sudah tahu seperti apa wajahku. Jawabannya ternyata tidak. Kami benar-benar akan bertemu tanpa pernah mengetahui wajah satu sama lain sebelumnya."
+    },
+    {
+      type: "paragraph",
+      text: "Itulah pertama kalinya aku bertemu Galuh secara langsung. Aku cukup terkejut mendengar suaranya yang lembut dan terdengar imut. Bahkan aku sempat beberapa kali memastikan apakah benar itu suara Galuh."
+    },
+    {
+      type: "paragraph",
+      text: "Aku juga baru pertama kali naik motor di Porong. Awalnya aku mengambil sisi kiri, tetapi Galuh mengarahkanku ke sisi kanan dekat Indomaret. Ketika memasuki gang menuju pemakaman, pikiranku mendadak kosong. Akhirnya, aku benar-benar sampai di tempat yang sejak awal ingin kutuju."
+    },
+    {
+      type: "paragraph",
+      text: "Sebelumnya Galuh sempat menawarkan untuk membelikan bunga. Aku juga sempat bertanya tentang air mawar karena ingin membawanya. Aku cukup terkejut ketika mengetahui bahwa air mawar ternyata tidak mudah ditemukan di Jawa Timur. Aku bahkan sempat bertanya kepada adikku yang tinggal di Malang."
+    },
+    {
+      type: "heading",
+      text: "Akhirnya, Aku Sampai di Makam Mufi"
+    },
+    {
+      type: "paragraph",
+      text: "Sesampainya di pemakaman, Galuh mengambil dua kursi dan aku ikut membawanya. Ketika berdiri di dekat makam Mufi, aku benar-benar tidak tahu harus berkata apa. Rasanya sulit menerima bahwa seseorang yang pernah kutemui dan ajak bicara secara langsung kini sudah berada di dalam makam."
+    },
+    {
+      type: "paragraph",
+      text: "Galuh mulai bercerita tentang Mufi, termasuk tentang operasi ketiganya dan berbagai hal yang pernah dialami Mufi. Ada bagian cerita yang terasa begitu berat untuk kudengar. Aku tidak sanggup menahannya dan akhirnya bersandar di makam Mufi."
+    },
+    {
+      type: "paragraph",
+      text: "Aku hanya bisa meluapkan kesedihan dan bertanya-tanya mengapa semua ini harus terjadi. Mengapa aku baru mengetahui semuanya sekarang? Setelah itu, aku menaburkan bunga dan menyiram makam Mufi."
+    },
+    {
+      type: "paragraph",
+      text: "Galuh juga menunjukkan makam ayah dan ibu Mufi. Ia sempat bertanya apakah aku ingin mengunjungi kakak Mufi. Aku menjawab bahwa sebaiknya kami meminta izin terlebih dahulu. Akhirnya, kunjungan ke rumah Mufi direncanakan untuk hari berikutnya."
+    },
+    {
+      type: "heading",
+      text: "Makan Siang dan Perjalanan ke Malang"
+    },
+    {
+      type: "paragraph",
+      text: "Setelah dari makam, aku dan Galuh makan di Geprek Jon. Aku cukup suka dengan ayam gepreknya. Di sana, aku sempat berbincang dengan seorang pelanggan laki-laki yang terlihat lebih dewasa. Ia terkejut mengetahui bahwa aku datang jauh-jauh dari Bekasi."
+    },
+    {
+      type: "paragraph",
+      text: "Ketika ditanya alasanku datang, aku tidak sanggup menjawab. Galuh yang kemudian menjelaskan. Orang itu langsung terdiam dengan ekspresi yang sulit kulupakan."
+    },
+    {
+      type: "paragraph",
+      text: "Aku juga membeli tiket kereta untuk perjalanan keesokan harinya sebagai persiapan apabila setelah mengunjungi keluarga Mufi aku harus kembali."
+    },
+    {
+      type: "paragraph",
+      text: "Setelah itu, aku pertama kalinya pergi ke Terminal Porong untuk naik Trans Jatim menuju Bungurasih. Galuh menemaniku dan membantu bertanya kepada petugas. Ada bus VIP seharga Rp15.000 dengan tempat duduk terjamin, tetapi aku memilih bus seharga Rp5.000."
+    },
+    {
+      type: "image",
+      src: "7hari3.jpg",
+      caption: "Foto tiket TransJatim."
+    },
+    {
+      type: "paragraph",
+      text: "Kami kemudian berpisah. Di dalam bus, aku mengirim foto tiket dan mengucapkan terima kasih kepada Galuh. Aku juga mengirimkan foto Lumpur Lapindo."
+    },
+    {
+      type: "image",
+      src: "7hari4.jpg",
+      caption: "Pemandangan Lumpur Lapindo dalam perjalanan."
+    },
+    {
+      type: "paragraph",
+      text: "Sesampainya di Bungurasih, aku mencari bus menuju Malang. Aku sempat diarahkan oleh seseorang meskipun adikku sebelumnya sudah memberikan petunjuk. Di sekitar terminal, aku melihat para sopir berbincang, para pedagang, dan berbagai makanan yang dijual. Aku bahkan tertarik membeli risoles Semarang, tetapi masih ragu apakah rasanya akan cocok."
+    },
+    {
+      type: "paragraph",
+      text: "Akhirnya aku sampai di Malang dan turun di depan rumah sakit yang sedang dibangun. Aku menunggu adikku, tetapi ternyata ia sempat melewatiku sampai ke Indomaret. Aku kemudian berjalan ke sana dan sengaja tidak langsung muncul sampai ia memutar motornya."
+    },
+    {
+      type: "paragraph",
+      text: "Senang rasanya bisa bertemu adikku lagi. Kami berbincang cukup banyak. Aku sempat bercerita bahwa selama ini aku sudah mengeluarkan banyak uang untuk JKT48, padahal masih banyak orang yang membutuhkan bantuan. Bahkan uang Rp100.000 pun bisa sangat berarti bagi orang lain."
+    },
+    {
+      type: "paragraph",
+      text: "Adikku kemudian berhenti di SPBU. Aku melaksanakan salat Asar dan kembali mengirimkan Al-Fatihah untuk Mufi. Setelah itu, adikku mengajakku makan ramen yang direkomendasikannya. Kami menikmati waktu bersama. Ia juga membelikan kue durian, tetapi aku tidak memakannya karena malu dan gengsi, meskipun sebenarnya aku suka durian."
+    },
+    {
+      type: "heading",
+      text: "Pagi di Batu"
+    },
+    {
+      type: "paragraph",
+      text: "Keesokan paginya, aku dan adikku pergi ke pasar di Batu untuk mencari air mawar. Sayangnya, kami tidak menemukannya. Akhirnya aku membeli bunga tabur seharga Rp5.000 dan meminta Galuh untuk membeli bunga juga."
+    },
+    {
+      type: "image",
+      src: "7hari5.jpg",
+      caption: "Perjalanan bersama adik di pasar Batu."
+    },
+    {
+      type: "paragraph",
+      text: "Adikku juga membuat yogurt. Aku sempat meminumnya. Hal sederhana yang menjadi bagian dari kenangan singkat kami di Batu."
+    },
+    {
+      type: "paragraph",
+      text: "Hari Jumat, aku melaksanakan salat Jumat dan kembali mengirimkan Al-Fatihah untuk Mufi. Setelah salat, aku mengambil satu gorengan yang dibagikan sebagai berkah Jumat untuk bekal."
+    },
+    {
+      type: "paragraph",
+      text: "Setelah itu, aku menuju tempat bus bersama adikku. Sambil melihat pemandangan pegunungan Batu, aku sempat berkata, “Setiap pertengahan tahun, kenapa aku selalu diuji?” Pemandangan di sana begitu indah. Aku bahkan sempat berpikir bahwa mungkin hidup di tempat seperti itu akan terasa lebih tenang dibandingkan Bekasi."
+    },
+    {
+      type: "paragraph",
+      text: "Aku kemudian berpamitan dengan adikku. Rasanya masih kurang karena waktu bersama terasa begitu singkat. Namun, aku harus kembali fokus pada tujuan utamaku: mengunjungi makam Mufi."
+    },
+    {
+      type: "heading",
+      text: "Kembali ke Porong"
+    },
+    {
+      type: "paragraph",
+      text: "Dalam perjalanan bus kembali, aku memegang tas di pangkuan. Ada perasaan deja vu, mengingatkanku pada perjalanan bus ke Malang pada tahun 2024."
+    },
+    {
+      type: "paragraph",
+      text: "Sesampainya di Bungurasih, kali ini aku memilih Trans Jatim VIP seharga Rp15.000. Aku tidak ingin menghabiskan waktu terlalu lama menunggu bus seperti sebelumnya. Aku ingin punya lebih banyak waktu untuk berada di makam Mufi."
+    },
+    {
+      type: "paragraph",
+      text: "Perjalanan menuju Porong ternyata tidak sampai satu jam. Galuh bahkan cukup terkejut ketika mengetahui aku sudah hampir sampai. Ia menungguku sambil membawa dua es jeruk. Hal kecil yang membuatku merasa diperhatikan."
+    },
+{
+  type: "paragraph",
+  text: "Kami berbincang tentang banyak hal, termasuk program belajar mandiri yang menggantikan KKN dan pengalamanku mengikuti KKN di Sumatera Utara."
+},
+{
+  type: "paragraph",
+  text: "Setelah berbincang, kami kembali menuju makam Mufi. Aku menaburkan bunga dan menghabiskan waktu di sana. Tidak lama kemudian, Galuh bertanya kepadaku ingin makan apa. Awalnya, kami mencoba mencari tempat makan steak, tetapi tempat yang kami tuju ternyata sudah tutup. Akhirnya, kami berkeliling Porong untuk mencari tempat makan lain."
+},
+{
+  type: "paragraph",
+  text: "Di tengah perjalanan, Galuh mulai bercerita tentang masa-masa sekolahnya bersama Mufi. Ia menunjukkan tempat-tempat yang pernah menjadi bagian dari kehidupan mereka, mulai dari TK hingga SMA. Kami bahkan sempat mampir ke SMA Negeri 1 Porong, sekolah tempat mereka berdua pernah menuntut ilmu. Rasanya menarik bisa melihat langsung tempat-tempat yang selama ini hanya kudengar dari cerita Galuh."
+},
+{
+  type: "paragraph",
+  text: "Setelah cukup lama berkeliling, ternyata kami belum juga menemukan makanan yang sesuai dengan keinginanku. Pada akhirnya, kami memutuskan untuk kembali ke Geprek Jon. Wkwk, setelah sebelumnya makan di sana, ternyata kami kembali memilih tempat yang sama."
+},
+{
+  type: "paragraph",
+  text: "Setelah makan, kami melaksanakan salat Asar. Saat itu, Galuh sempat menyadari bahwa dirinya sedang menstruasi ketika waktu Zuhur, sehingga ia menunggu di luar ketika aku melaksanakan salat Asar."
+},
+{
+  type: "paragraph",
+  text: "Seusai salat, kami kembali menuju makam Mufi. Kami menghabiskan waktu di sana dan sempat mengabadikan beberapa foto bersama di dekat makam Mufi."
+},
+{
+  type: "image",
+  src: "7hari7.jpg",
+  caption: "Aku dan Galuh berfoto bersama di makam Mufi setelah salat Asar."
+},
+{
+  type: "image",
+  src: "7hari8.jpg",
+  caption: "Salah satu kenangan kami di makam Mufi."
+},
+{
+  type: "image",
+  src: "7hari9.jpg",
+  caption: "Mengabadikan waktu yang kami habiskan di sana."
+},
+{
+  type: "image",
+  src: "7hari10.jpg",
+  caption: "Kenangan bersama Galuh di makam Mufi."
+},
+{
+  type: "image",
+  src: "7hari11.jpg",
+  caption: "Beberapa momen yang ingin kusimpan dari perjalanan ini."
+},
+{
+  type: "paragraph",
+  text: "Kami berada di sana sampai menjelang Magrib. Rasanya masih berat untuk beranjak pergi. Namun, ketika mengetahui bahwa kakak Mufi sudah berada di rumah, kami akhirnya memutuskan untuk berangkat berkunjung ke rumah Mufi."
+},
+    {
+      type: "heading",
+      text: "Berkunjung ke Rumah Mufi"
+    },
+    {
+      type: "paragraph",
+      text: "Itu pertama kalinya aku datang ke rumah Mufi. Kakaknya menyambut kami dengan sangat baik. Awalnya suasana terasa sedikit canggung, tetapi setelah mulai membicarakan Mufi, obrolan perlahan menjadi lebih mengalir."
+    },
+    {
+      type: "paragraph",
+      text: "Waktu ternyata sudah Magrib dan sebenarnya aku harus segera kembali. Galuh sempat memberi isyarat dengan menanyakan kapan aku akan berangkat. Namun, obrolan bersama keluarga Mufi terasa begitu dalam sehingga aku akhirnya memutuskan untuk menggunakan rencana cadangan: pulang dengan Trans Jatim."
+    },
+    {
+      type: "paragraph",
+      text: "Tiket kereta yang kubeli sehari sebelumnya akhirnya tidak terpakai. Sebelum berangkat, kami sempat mampir ke Indomaret. Galuh pergi ke toilet, lalu aku bertanya apakah ia ingin membeli sesuatu."
+    },
+    {
+      type: "paragraph",
+      text: "Ia memilih yogurt Cimory rasa stroberi yang ukurannya cukup panjang. Dari situ aku mulai menyadari bahwa Galuh menyukai hal-hal yang sehat dan rasa stroberi. Aku pun membeli beberapa makanan berwarna merah muda atau rasa stroberi."
+    },
+    {
+      type: "paragraph",
+      text: "Galuh terlihat sedikit bingung. Setelah itu, kami melanjutkan perjalanan menuju Terminal Porong."
+    },
+    {
+      type: "heading",
+      text: "Perpisahan di Terminal Porong"
+    },
+    {
+      type: "paragraph",
+      text: "Bus Trans Jatim malam itu menjadi bus terakhir yang bisa kunaiki. Ketika aku naik, lampu-lampu di area halte terminal mulai dimatikan. Aku melambaikan tangan kepada Galuh. Aku juga sempat panik karena aku kira kunci motor dia masih ada dikantong ku. Aku bertanya dari dalam bus tentang kunci motor dia menggunakan bahasa isyarat"
+    },
+    {
+      type: "video",
+      src: "7hari1.mp4",
+      caption: "Rekaman Galuh saat aku berpamitan di Terminal Porong."
+    },
+    {
+      type: "paragraph",
+      text: "Awalnya aku duduk di kursi yang saling berhadapan, kemudian pindah ke kursi pojok. Dalam perjalanan, aku sempat panik melihat kondisi lalu lintas di sekitar pintu keluar tol. Aku mencoba menenangkan diri dengan minum Larutan Cap Badak rasa jambu dan memperbanyak istigfar. Perlahan, lalu lintas kembali bergerak."
+    },
+    {
+      type: "paragraph",
+      text: "Aku kemudian memesan Gojek menuju Stasiun Waru karena harus mengejar kereta. Pengemudinya cukup pengertian dan berusaha membantuku mengejar waktu. Perjalanan itu sempat membuatku khawatir karena cara berkendaranya cukup berisiko."
+    },
+{
+  type: "paragraph",
+  text: "Ada satu hal kecil yang baru kusadari setelah sampai di Stasiun Waru. Air minum milik Galuh ternyata ikut terbawa bersamaku. Entah kenapa, hal sederhana itu terasa seperti kenangan kecil yang ikut pulang bersamaku dari Porong."
+},
+{
+  type: "image",
+  src: "7hari12.jpg",
+  caption: "Air minum Galuh yang tanpa sengaja terbawa."
+},
+    {
+      type: "heading",
+      text: "Sampai di Rumah, tetapi Rasanya Berbeda"
+    },
+    {
+      type: "paragraph",
+      text: "Di tengah perjalanan menuju Stasiun Waru, aku benar-benar merasa bahwa Allah sedang menolongku. Ada perasaan seolah-olah aku diselamatkan dan diberi jalan untuk bisa pulang. Pada akhirnya, aku berhasil pulang dengan selamat."
+    },
+    {
+      type: "paragraph",
+      text: "Namun, ketika sampai di Stasiun Bekasi, muncul perasaan yang sangat aneh. Bekasi yang biasanya kukenal justru terasa seperti kota yang asing. Semuanya terasa hampa, kosong, dan sulit dijelaskan."
+    },
+    {
+      type: "paragraph",
+      text: "Aku hanya bisa menahan tangis. Setelah perjalanan sejauh itu, setelah akhirnya bisa datang ke makam Mufi, bertemu Galuh, mengunjungi keluarganya, dan pulang dengan selamat, ternyata ada perasaan kosong yang masih tertinggal."
+    },
+    {
+      type: "quote",
+      text: "Aku sudah sampai di rumah. Namun, rasanya ada bagian dari diriku yang masih tertinggal di Porong."
+    },
+    {
+      type: "paragraph",
+      text: "Perjalanan hari itu akhirnya selesai. Banyak hal yang terjadi, banyak orang yang kutemui, dan banyak hal kecil yang akan selalu kuingat. Aku datang untuk mengunjungi Mufi, tetapi perjalanan ini juga mengajarkanku tentang kehilangan, kebaikan orang lain, keluarga, dan betapa berharganya sebuah pertolongan."
+    },
+    {
+      type: "paragraph",
+      text: "Terima kasih, Galuh, sudah menemaniku selama di Porong. Terima kasih juga kepada keluarga Mufi yang telah menyambutku. Dan untuk Mufi, semoga setiap doa yang kukirimkan selalu menjadi bagian dari kenangan baik yang kutitipkan untukmu."
+    }
+  ]
+};
+
     // MEMBUAT KARTU BERANDA
 
     const memoryGrid = document.getElementById("memoryGrid");
@@ -1810,9 +2296,9 @@ switch (section.type) {
     renderChronologyArticle(content);
     break;
 
-  case "gallery":
-    renderGallery(content);
-    break;
+case "gallery":
+  renderGalleryLock(content);
+  break;
 
   case "profile":
     renderSiapaMufiArticle(content);
@@ -1822,11 +2308,14 @@ switch (section.type) {
     renderLetter(content);
     break;
 
-  case "visit7":
-  case "visit40":
-  case "visit100":
-    renderVisit(content, id);
-    break;
+case "visit7":
+  renderSevenDayArticle(content);
+  break;
+
+case "visit40":
+case "visit100":
+  renderVisit(content, id);
+  break;
 }
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -1835,6 +2324,104 @@ switch (section.type) {
 
 function renderChronologyArticle(target) {
   renderFeatureArticle(target, chronologyArticle);
+}
+
+
+function renderSevenDayArticle(target) {
+  const article = sevenDayArticle;
+
+  const contentHTML = article.content.map(item => {
+    if (item.type === "heading") {
+      return `
+        <h2 class="article-section-title">
+          ${escapeHTML(item.text)}
+        </h2>
+      `;
+    }
+
+    if (item.type === "paragraph") {
+      return `<p>${escapeHTML(item.text)}</p>`;
+    }
+
+    if (item.type === "quote") {
+      return `
+        <blockquote class="article-quote">
+          ${escapeHTML(item.text)}
+        </blockquote>
+      `;
+    }
+
+    if (item.type === "image") {
+      return `
+        <figure class="article-image">
+          <img
+            src="${safeSrc(item.src)}"
+            alt="${escapeHTML(item.caption || "Foto perjalanan 7 Hari Mufi")}"
+            loading="lazy"
+          >
+          ${
+            item.caption
+              ? `<figcaption>${escapeHTML(item.caption)}</figcaption>`
+              : ""
+          }
+        </figure>
+      `;
+    }
+
+    if (item.type === "video") {
+      return `
+        <figure class="article-video">
+          <video
+            src="${safeSrc(item.src)}"
+            controls
+            preload="metadata"
+            playsinline
+          ></video>
+          ${
+            item.caption
+              ? `<figcaption>${escapeHTML(item.caption)}</figcaption>`
+              : ""
+          }
+        </figure>
+      `;
+    }
+
+    return "";
+  }).join("");
+
+  target.innerHTML = `
+    <article class="news-article">
+      <header class="article-header">
+        <span class="article-category">
+          ${escapeHTML(article.category)}
+        </span>
+
+        <h1 class="article-title">
+          ${escapeHTML(article.title)}
+        </h1>
+
+        <p class="article-subtitle">
+          ${escapeHTML(article.subtitle)}
+        </p>
+
+        <div class="article-meta">
+          <span>Ditulis oleh ${escapeHTML(article.author)}</span>
+          <span>${escapeHTML(article.date)}</span>
+        </div>
+      </header>
+
+      <div class="article-divider"></div>
+
+      <div class="article-body">
+        ${contentHTML}
+      </div>
+
+      <footer class="article-footer">
+        <span>Ruang Mufi</span>
+        <p>Sebuah ruang untuk menyimpan cerita dan kenangan.</p>
+      </footer>
+    </article>
+  `;
 }
 
 function renderSiapaMufiArticle(target) {
@@ -1937,6 +2524,59 @@ function renderFeatureArticle(target, article) {
 }
 
     // ISI GALERI
+
+// PENGUNCI KHUSUS GALERI MUFI
+
+function renderGalleryLock(target) {
+  target.innerHTML = `
+    <div class="gallery-lock">
+      <div class="gallery-lock-symbol">♡</div>
+
+      <h2 class="serif">Ruang kecil milik Mufi</h2>
+
+      <p>
+        Beberapa kenangan ingin kusimpan lebih dekat.
+        Masukkan kata sandi untuk melanjutkan.
+      </p>
+
+      <form id="galleryPasswordForm">
+        <input
+          id="galleryPasswordInput"
+          type="password"
+          placeholder="Masukkan kata sandi"
+          autocomplete="off"
+          required
+        >
+
+        <button type="submit" class="primary-button">
+          Buka Galeri
+        </button>
+
+        <p id="galleryPasswordError" role="alert"></p>
+      </form>
+
+      <span class="gallery-lock-footer">
+        PRIVATE MEMORIES ♡
+      </span>
+    </div>
+  `;
+
+  const form = document.getElementById("galleryPasswordForm");
+  const input = document.getElementById("galleryPasswordInput");
+  const error = document.getElementById("galleryPasswordError");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (input.value === GALLERY_PASSWORD) {
+      renderGallery(target);
+    } else {
+      error.textContent = "Kata sandinya belum tepat. Coba lagi, ya.";
+      input.value = "";
+      input.focus();
+    }
+  });
+}
 
     function renderGallery(target) {
       if (!galleryData.length) {
