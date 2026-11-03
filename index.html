@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -795,6 +794,110 @@
     font-size: 21px;
   }
 }
+
+/* DAFTAR SURAT UNTUK MUFI */
+
+.letter-list {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.letter-list-intro {
+  max-width: 580px;
+  margin: 0 auto 28px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+  text-align: center;
+}
+
+.letter-list-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.letter-list-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 24px 26px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  color: var(--dark-brown);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.letter-list-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--purple);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .07);
+}
+
+.letter-card-number {
+  margin-bottom: 12px;
+  color: var(--purple);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.letter-card-title {
+  margin-bottom: 8px;
+  padding-right: 30px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.letter-card-subtitle {
+  max-width: 90%;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.letter-card-date {
+  margin-top: 15px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .5px;
+}
+
+.letter-card-arrow {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  color: var(--purple);
+  font-size: 20px;
+}
+
+.letter-back-button {
+  margin-bottom: 20px;
+}
+
+.letter-article-body {
+  line-height: 2.05;
+}
+
+@media (max-width: 600px) {
+  .letter-list-card {
+    padding: 21px 19px;
+  }
+
+  .letter-card-title {
+    font-size: 21px;
+  }
+}
   </style>
 </head>
 
@@ -1454,14 +1557,163 @@ function renderChronologyArticle() {
       Kamu tidak perlu mengisinya sekarang.
     */
 
-    const letterData = {
-      greeting: "Hai, Mufi.",
-      paragraphs: [
-        "Ada banyak hal yang ingin kutuliskan, tetapi untuk sekarang, biarlah halaman ini menjadi tempatnya.",
-        "Nanti, kalau aku sudah siap, akan kutambahkan cerita-cerita yang belum sempat kusampaikan."
-      ],
-      signature: "— dari seseorang yang mengingatmu"
-    };
+// DAFTAR SURAT UNTUK MUFI
+// Untuk menambah surat baru nanti, cukup tambahkan objek baru
+// ke dalam array letterArticles.
+
+const letterArticles = [
+  {
+    id: "haii-mufiii",
+
+    title: "Haii, Mufiii",
+    subtitle: "Surat kecil di hari ke-101 sejak kepergianmu.",
+    category: "SURAT UNTUK MUFI",
+    author: "Rasya Syawal",
+    date: "Hari ke-101",
+
+    content: [
+      {
+        type: "paragraph",
+        text: "Haii, Mufiii."
+      },
+      {
+        type: "paragraph",
+        text: "Ini sudah hari ke-101 kamu meninggalkan kita semua. Maafin semua kesalahanku ke kamu ya, Mufi. Kalau selama kamu hidup kemarin aku kurang aware sama sekitarku, termasuk kurang aware sama kamu, maafin aku."
+      },
+      {
+        type: "paragraph",
+        text: "Sebenarnya aku sadar kok kalau ada sesuatu yang terjadi sama kamu. Biasanya kamu selalu ceria di SW, selalu posting kalau lagi ngelesin anak-anak. Tapi sejak Desember, aku sudah jarang melihat story-mu. Paling hanya SG, bukan SW."
+      },
+      {
+        type: "paragraph",
+        text: "Padahal, kalau ada orang lain yang tiba-tiba menghilang, biasanya aku pasti menanyakan kabarnya dan bagaimana kondisinya. Tapi entah kenapa, ketika kamu mulai menghilang karena sakit, aku justru tidak cukup peka. Aku sadar kamu mulai jarang ada kabar, tetapi tetap saja aku tidak menanyakan bagaimana keadaanmu waktu itu."
+      },
+      {
+        type: "paragraph",
+        text: "Seandainya saat itu aku menanyakan kabar dan kondisimu, mungkin aku bisa menjengukmu, mendoakanmu dari jauh-jauh hari, atau setidaknya mencoba membantu mengarahkan pengobatanmu. Aku punya saudara dokter, dan relasinya pernah membantu nenekku yang sempat koma hingga akhirnya sadar kembali. Tapi sayang ya, Mufi, semua itu sudah terlambat. Waktu tidak bisa diulang."
+      },
+
+      {
+        type: "paragraph",
+        text: "Aku selalu bilang begini ke Galuh: selama Mufi masih hidup, aku baru sekali bertemu langsung sama Mufi. Benar-benar baru sekali. Tapi setelah kamu tidak ada, aku malah sudah tiga kali ke Porong."
+      },
+      {
+        type: "paragraph",
+        text: "Aku jadi berpikir, mungkin memang takdir kita hanya mempertemukan kita sekali saja. Padahal sebenarnya ada tiga kesempatan lain untuk bertemu, tetapi semuanya selalu gagal."
+      },
+      {
+        type: "paragraph",
+        text: "Pertama, waktu aku ke Surabaya pada September 2024. Kata Galuh, saat itu kamu sedang memegang program kerja, jadi lagi sibuk-sibuknya. Kedua, waktu kamu dan Galuh ke Jogja pada awal tahun, aku justru sudah pulang ke Bekasi lebih dahulu. Ketiga, saat kamu ke Jogja untuk lomba, aku juga sudah kembali ke Bekasi."
+      },
+      {
+        type: "paragraph",
+        text: "Sekarang aku jadi menyesal kenapa dulu pulang ke Bekasi cepat-cepat."
+      },
+
+      {
+        type: "paragraph",
+        text: "Aku juga pernah bilang ke Galuh kalau Mufi itu satu-satunya adik kelas yang bisa diajak ngobrol tentang apa pun. Mungkin itu juga salah satu alasan kenapa aku begitu syok ketika tahu kamu sudah tidak ada."
+      },
+      {
+        type: "paragraph",
+        text: "Waktu pertama kali tahu kabarmu, aku sampai menangis dan mengurung diri di kamar selama kurang lebih tiga hari. Setelah capek menangis dan beristirahat, barulah aku terpikir untuk datang ke makam kamu."
+      },
+      {
+        type: "paragraph",
+        text: "Kebetulan, kunjungan pertamaku ke makam kamu tepat pada hari ketujuh kepergianmu. Sebenarnya aku sendiri tidak begitu memahami asal-usul peringatan tujuh hari, empat puluh hari, atau seratus hari. Aku hanya menggunakan hitungan itu supaya lebih mudah menentukan jadwal untuk berziarah ke makam kamu."
+      },
+      {
+        type: "paragraph",
+        text: "Alhamdulillah, Mufi, Allah memberiku jalan supaya aku bisa datang ke makam kamu. Awalnya aku mendapat kabar tentang kepergianmu dari Dete atau Dinda. Setelah itu aku mengirim DM dan menanyakan alamat makam kamu."
+      },
+      {
+        type: "paragraph",
+        text: "Masya Allah-nya, dari situ aku jadi mengenal Galuh. Sebelumnya Galuh bahkan belum pernah chat denganku. Aku merasa Allah mempertemukan aku dengan Galuh dan menjadikannya teman yang membantuku menemukan jalan untuk bisa sowan ke kakakmu."
+      },
+      {
+        type: "paragraph",
+        text: "Aku juga sempat sowan ke kakakmu, Mufi. Tapi waktu itu aku sama sekali tidak terpikir untuk memberikan sesuatu. Otakku benar-benar blank, kosong. Maaf ya, Kak, kalau suatu saat membaca bagian ini. Hehehe."
+      },
+
+      {
+        type: "paragraph",
+        text: "Sampai sekarang, kalau aku sedang teringat kamu, biasanya ceritanya langsung ke Galuh. Kadang kalau bangun tidur aku juga kaget melihat ada tulisan '100+ pesan dari Kak Rasya'. Hahaha. Lucu ya, Muf?"
+      },
+      {
+        type: "paragraph",
+        text: "Oh iya, Muf, tadi aku ke makam kamu. Aku dan Galuh banyak ngobrol, bahkan beberapa kali bercanda seolah-olah kamu masih ada di antara kami. Jujur, saat ngobrol di makam tadi aku benar-benar merasa seperti sedang bertiga: aku, Galuh, dan kamu."
+      },
+      {
+        type: "paragraph",
+        text: "Aku juga membawa oleh-oleh krokot untuk makam kamu. Semoga bisa tumbuh subur dan bagus, ya. Itu aku tanam sendiri dari rumah, loh."
+      },
+
+      {
+        type: "paragraph",
+        text: "Waktu kamu wisuda kemarin, sebenarnya aku ingin mengucapkan happy graduation. Tapi aku bingung bagaimana cara mengucapkannya. Rasanya kata-kata yang ingin kusampaikan tidak bisa begitu saja diketik."
+      },
+      {
+        type: "paragraph",
+        text: "Aku juga melihat story Unesa. Kakakmu yang menggantikan kamu saat wisuda. Kamu pasti juga hadir di sana, kannn?"
+      },
+      {
+        type: "paragraph",
+        text: "Aku pernah bilang begini ke Galuh: 'Aku percaya kalau kamu, Galuh, menikah nanti, Mufi pasti datang. Bisa jadi dalam bentuk kupu-kupu yang menghampirimu.' Karena itu, aku percaya kamu juga pasti datang saat wisudamu kemarin."
+      },
+      {
+        type: "paragraph",
+        text: "Happy graduation ya, Mufiii. Dulu kamu sudah semangat sekali bertanya kepadaku tentang penelitian. Tapi setelah mendengar cerita dari kakakmu dan cerita Galuh dari sudut pandangnya tentang perjalanan hidupmu, aku jadi tidak bisa berkata apa-apa. Ya, benar kata kakakmu: itu memang kemauan Mufi."
+      },
+
+      {
+        type: "paragraph",
+        text: "Muf, masa iya sih kamu benar-benar bisa mendengar obrolanku dengan Galuh sebelum aku pulang dari makam pada bulan Agustus kemarin?"
+      },
+      {
+        type: "paragraph",
+        text: "Waktu itu aku memang belum ingin dimimpikan olehmu. Saat itu, yaaa, karena aku takut kalau memimpikanmu, aku akan sedih dan menangis lagi. Sementara itu, aku masih harus fokus menjalani kehidupanku."
+      },
+      {
+        type: "paragraph",
+        text: "Tapi sampai sekarang, bahkan di hari ke-100 kepergianmu, aku benar-benar belum dimimpikan lagi. Sekarang aku malah merasa salah sudah mengatakan hal itu. Aku jadi berpikir, sepertinya tidak apa-apa kalau aku memimpikan Mufi lalu menjadi sedih, daripada tidak dimimpikan sama sekali."
+      },
+      {
+        type: "paragraph",
+        text: "Main-main ya, Muf, ke mimpiku. Tapi please, kalau datang, ngomong ya. Jangan diam saja. Jujur, aku sudah lupa suara kamu seperti apa. Kita memang baru sekali bertemu, itu pun bersama teman-temanku, dan sudah tiga tahun lalu, pada 2023. Jadi, aku sudah lupa bagaimana suaramu."
+      },
+
+      {
+        type: "paragraph",
+        text: "Makasih ya, Muf. Dulu kamu pernah bilang kalau kamu ingin menjadi seperti aku, seseorang yang bisa menginspirasi banyak orang. Tapi sekarang justru kamu yang menjadi inspirasi buatku untuk menjadi orang yang lebih baik."
+      },
+      {
+        type: "paragraph",
+        text: "Salah satunya dari cerita kakakmu. Kakakmu pernah bercerita bahwa waktu itu kamu diminta membantu membuat surat untuk karang taruna. Katanya, saat itu kamu sempat kesal, tetapi pada akhirnya tetap mengerjakannya."
+      },
+      {
+        type: "paragraph",
+        text: "Dari cerita sederhana itu saja aku belajar banyak. Kalau kita ingin menjadi orang baik, kita tidak boleh selalu mengedepankan ego sendiri. Ada kalanya kita tetap perlu melakukan sesuatu yang bermanfaat meskipun awalnya kita tidak sedang ingin melakukannya."
+      },
+      {
+        type: "paragraph",
+        text: "Banyak sekali hal yang aku pelajari dari cerita kakakmu tentang kamu. Dulu kamu pernah bilang ingin menjadi seperti aku, tetapi sekarang aku justru belajar banyak darimu."
+      },
+
+      {
+        type: "paragraph",
+        text: "Mungkin surat ini sudah terlalu panjang ya, Muf. Intinya, sampai jumpa hari Minggu besok. Nanti aku ke makam lagi untuk pamitan sama kamu."
+      },
+      {
+        type: "paragraph",
+        text: "See you bulan Desember, kalau aku jadi menonton JKT48 di Unesa, ya. Tapi kalau ternyata tidak jadi, berarti see you pas ulang tahunmu saja."
+      },
+      {
+        type: "paragraph",
+        text: "Jangan lupa main-main ke mimpiku, ya, Mufi. Ini request, hehe."
+      }
+    ]
+  }
+];
 
     /*
       FOTO KUNJUNGAN MAKAM
@@ -1756,17 +2008,166 @@ function renderFeatureArticle(target, article) {
 
     // SURAT UNTUK MUFI
 
-    function renderLetter(target) {
-      target.innerHTML = `
-        <article class="content-paper letter-paper">
-          <p class="letter-greeting">${escapeHTML(letterData.greeting)}</p>
-          ${letterData.paragraphs.map(paragraph => `
-            <p>${escapeHTML(paragraph)}</p>
-          `).join("")}
-          <p class="letter-signature">${escapeHTML(letterData.signature)}</p>
-        </article>
+// MENAMPILKAN DAFTAR SURAT
+
+function renderLetter(target) {
+  if (!letterArticles.length) {
+    target.innerHTML = `
+      <div class="empty-state">
+        <span class="empty-icon">✉</span>
+        <strong>Belum ada surat untuk Mufi.</strong>
+        Tulisan-tulisan berikutnya akan disimpan di sini.
+      </div>
+    `;
+    return;
+  }
+
+  target.innerHTML = `
+    <div class="letter-list">
+
+      <p class="letter-list-intro">
+        Beberapa kata mungkin belum sempat disampaikan.
+        Jadi, semuanya kusimpan di sini, satu surat demi satu surat.
+      </p>
+
+      <div class="letter-list-grid">
+        ${letterArticles.map((article, index) => `
+          <button
+            class="letter-list-card"
+            onclick="openLetterArticle('${escapeHTML(article.id)}')"
+          >
+            <span class="letter-card-number">
+              SURAT ${String(index + 1).padStart(2, "0")}
+            </span>
+
+            <span class="letter-card-title">
+              ${escapeHTML(article.title)}
+            </span>
+
+            <span class="letter-card-subtitle">
+              ${escapeHTML(article.subtitle)}
+            </span>
+
+            <span class="letter-card-date">
+              ${escapeHTML(article.date)}
+            </span>
+
+            <span class="letter-card-arrow">↗</span>
+          </button>
+        `).join("")}
+      </div>
+
+    </div>
+  `;
+}
+
+
+// MEMBUKA SURAT YANG DIPILIH
+
+function openLetterArticle(id) {
+  const article = letterArticles.find(item => item.id === id);
+
+  if (!article) return;
+
+  const target = document.getElementById("sectionContent");
+
+  if (!target) return;
+
+  renderLetterArticle(target, article);
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+
+// MENAMPILKAN ISI SURAT DALAM BENTUK ARTIKEL
+
+function renderLetterArticle(target, article) {
+  const contentHTML = article.content.map(item => {
+
+    if (item.type === "heading") {
+      return `
+        <h2 class="article-section-title">
+          ${escapeHTML(item.text)}
+        </h2>
       `;
     }
+
+    if (item.type === "paragraph") {
+      return `
+        <p>${escapeHTML(item.text)}</p>
+      `;
+    }
+
+    if (item.type === "quote") {
+      return `
+        <blockquote class="article-quote">
+          ${escapeHTML(item.text)}
+        </blockquote>
+      `;
+    }
+
+    return "";
+
+  }).join("");
+
+  target.innerHTML = `
+    <button
+      class="back-button letter-back-button"
+      onclick="renderLetter(document.getElementById('sectionContent'))"
+    >
+      ← Kembali ke daftar surat
+    </button>
+
+    <article class="news-article">
+
+      <header class="article-header">
+
+        <span class="article-category">
+          ${escapeHTML(article.category)}
+        </span>
+
+        <h1 class="article-title">
+          ${escapeHTML(article.title)}
+        </h1>
+
+        <p class="article-subtitle">
+          ${escapeHTML(article.subtitle)}
+        </p>
+
+        <div class="article-meta">
+          <span>
+            Ditulis oleh ${escapeHTML(article.author)}
+          </span>
+
+          <span>
+            ${escapeHTML(article.date)}
+          </span>
+        </div>
+
+      </header>
+
+      <div class="article-divider"></div>
+
+      <div class="article-body letter-article-body">
+        ${contentHTML}
+      </div>
+
+      <footer class="article-footer">
+        <span>Ruang Mufi</span>
+        <p>Sebuah ruang untuk menyimpan cerita dan kenangan.</p>
+      </footer>
+
+    </article>
+  `;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
 
     // FOTO KUNJUNGAN 7 / 40 / 100 HARI
 
