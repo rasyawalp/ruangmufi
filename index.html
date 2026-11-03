@@ -1,0 +1,1605 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f0e6">
+  <title>Ruang Mufi — Sebuah Tempat untuk Mengenang</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f0e6;
+      --paper: #fffaf3;
+      --brown: #72533f;
+      --dark-brown: #49372d;
+      --muted: #9b8677;
+      --line: #e9dccd;
+      --purple: #8b789e;
+      --purple-light: #eee7f2;
+      --shadow: 0 8px 30px rgba(91, 64, 45, .06);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--dark-brown);
+      font-family: "DM Sans", sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    img, video { max-width: 100%; }
+
+    .hidden { display: none !important; }
+
+    .serif {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 400;
+    }
+
+    /* HALAMAN KATA SANDI */
+
+    #lockScreen {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse at 15% 15%, #e8d8c9 0, transparent 40%),
+        radial-gradient(ellipse at 85% 85%, #e8deed 0, transparent 38%),
+        var(--cream);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    #lockScreen.opening {
+      opacity: 0;
+      transform: scale(1.035);
+      pointer-events: none;
+    }
+
+    .lock-card {
+      width: 100%;
+      max-width: 400px;
+      padding: 40px 32px;
+      background: rgba(255, 250, 243, .9);
+      border: 1px solid rgba(114, 83, 63, .13);
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .lock-symbol {
+      width: 64px;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      border: 1px solid #d9c6b4;
+      border-radius: 50%;
+      font-size: 26px;
+      color: var(--brown);
+    }
+
+    .lock-card h1 {
+      margin: 0;
+      font-size: clamp(34px, 8vw, 43px);
+      line-height: 1.2;
+    }
+
+    .lock-subtitle {
+      margin: 12px 0 26px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .lock-card input {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      outline: none;
+      background: #fffdf9;
+      color: var(--dark-brown);
+      text-align: center;
+      letter-spacing: 3px;
+      transition: border .2s;
+    }
+
+    .lock-card input:focus { border-color: var(--purple); }
+
+    .primary-button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 13px 18px;
+      border: 0;
+      border-radius: 5px;
+      background: var(--brown);
+      color: white;
+      transition: background .2s, transform .2s;
+    }
+
+    .primary-button:hover {
+      background: var(--dark-brown);
+      transform: translateY(-1px);
+    }
+
+    #passwordError {
+      min-height: 22px;
+      margin: 9px 0 0;
+      color: #a45555;
+      font-size: 12px;
+    }
+
+    .lock-footer {
+      margin-top: 26px;
+      color: #b2a092;
+      font-size: 11px;
+      letter-spacing: .5px;
+    }
+
+    /* AREA WEBSITE */
+
+    #website {
+      min-height: 100vh;
+      opacity: 0;
+      transition: opacity .8s ease;
+    }
+
+    #website.visible { opacity: 1; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 15px max(24px, calc((100% - 1060px) / 2));
+      border-bottom: 1px solid rgba(114, 83, 63, .12);
+      background: rgba(247, 240, 230, .94);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--dark-brown);
+      text-align: left;
+    }
+
+    .brand-name {
+      display: block;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 23px;
+      line-height: 1.2;
+    }
+
+    .brand-caption {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .topbar-note {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .container {
+      width: min(100% - 40px, 960px);
+      margin: 0 auto;
+    }
+
+    .home-hero {
+      padding: 65px 0 38px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .home-hero h1 {
+      margin: 13px 0 14px;
+      font-size: clamp(42px, 8vw, 65px);
+      line-height: 1.15;
+    }
+
+    .home-hero p {
+      max-width: 470px;
+      margin: 0 auto;
+      color: #8e7969;
+      font-size: 14px;
+    }
+
+    .small-flower {
+      display: block;
+      margin: 22px auto 0;
+      color: var(--purple);
+      font-size: 20px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin: 15px 0 20px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 27px;
+      line-height: 1.3;
+    }
+
+    .section-heading p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+      padding-bottom: 65px;
+    }
+
+    .memory-card {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      min-height: 128px;
+      padding: 22px 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--paper);
+      color: var(--dark-brown);
+      text-align: left;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+
+    .memory-card:hover {
+      transform: translateY(-3px);
+      border-color: #cbb7a6;
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      flex: 0 0 43px;
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 6px;
+      background: #efe4d7;
+      font-size: 19px;
+    }
+
+    .memory-card:nth-child(3n + 2) .card-icon {
+      background: var(--purple-light);
+    }
+
+    .card-copy { flex: 1; }
+
+    .card-copy h3 {
+      margin: 0 0 5px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .card-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .card-arrow {
+      position: absolute;
+      right: 16px;
+      bottom: 12px;
+      color: #b49e8b;
+      font-size: 16px;
+    }
+
+    /* HALAMAN BAGIAN */
+
+    #pageView {
+      min-height: calc(100vh - 150px);
+      padding: 35px 0 65px;
+      animation: pageIn .45s ease both;
+    }
+
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(9px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 28px;
+      padding: 8px 0;
+      border: 0;
+      background: transparent;
+      color: var(--brown);
+      font-size: 13px;
+    }
+
+    .back-button:hover { color: var(--purple); }
+
+    .page-title {
+      margin: 0 0 10px;
+      font-size: clamp(34px, 7vw, 49px);
+      line-height: 1.2;
+    }
+
+    .page-description {
+      max-width: 580px;
+      margin: 0 0 30px;
+      color: var(--muted);
+    }
+
+    .content-paper {
+      padding: clamp(20px, 5vw, 36px);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .placeholder-note {
+      padding: 18px;
+      border-left: 3px solid #b7a3c8;
+      background: #f3edf5;
+      color: #766782;
+      font-size: 13px;
+    }
+
+    .empty-state {
+      padding: 40px 20px;
+      border: 1px dashed #d8c7b7;
+      border-radius: 6px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .empty-state .empty-icon {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .empty-state strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--brown);
+      font-weight: 600;
+    }
+
+    /* KRONOLOGI */
+
+    .timeline {
+      position: relative;
+      margin: 8px 0 0 8px;
+      padding-left: 25px;
+      border-left: 1px solid #d7c4b2;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 28px;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-item::before {
+      position: absolute;
+      top: 7px;
+      left: -31px;
+      width: 11px;
+      height: 11px;
+      border: 2px solid var(--paper);
+      border-radius: 50%;
+      background: var(--purple);
+      content: "";
+      box-shadow: 0 0 0 1px #c6b3d2;
+    }
+
+    .timeline-date {
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .timeline-item h3 {
+      margin: 4px 0;
+      font-size: 17px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: #8e7969;
+    }
+
+    /* GALERI */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-item {
+      margin: 0;
+      padding: 9px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fffdf9;
+    }
+
+    .gallery-item img,
+    .gallery-item video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 3px;
+      background: #eee4d9;
+    }
+
+    .gallery-item figcaption {
+      padding: 10px 3px 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* PROFIL */
+
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 27px;
+      align-items: start;
+    }
+
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 5px;
+      background: #eee4d9;
+    }
+
+    .profile-details h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .profile-details p { color: #8e7969; }
+
+    .profile-facts {
+      display: grid;
+      grid-template-columns: 100px minmax(0, 1fr);
+      gap: 9px 12px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .profile-facts span:nth-child(odd) { color: var(--muted); }
+    .profile-facts span:nth-child(even) { color: var(--dark-brown); }
+
+    /* SURAT */
+
+    .letter-paper {
+      padding: clamp(24px, 6vw, 48px);
+      border: 1px solid #e5d7c7;
+      background:
+        linear-gradient(rgba(255,250,243,.94), rgba(255,250,243,.94)),
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 31px,
+          #e8dcd0 32px
+        );
+    }
+
+    .letter-paper .letter-greeting {
+      margin: 0 0 22px;
+      color: var(--purple);
+      font-size: 13px;
+    }
+
+    .letter-paper p {
+      min-height: 1em;
+      white-space: pre-wrap;
+    }
+
+    .letter-signature {
+      margin-top: 35px;
+      color: var(--brown);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 21px;
+    }
+
+    /* CATATAN 7 / 40 / 100 HARI */
+
+    .visit-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .visit-photo {
+      padding: 8px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .visit-photo img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: #eee4d9;
+    }
+
+    .visit-photo p {
+      margin: 9px 3px 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 24px 20px 32px;
+      border-top: 1px solid rgba(114, 83, 63, .12);
+      color: #a18b79;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    footer .footer-symbol {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--purple);
+      font-size: 17px;
+    }
+
+    .fade-in {
+      animation: pageIn .65s ease both;
+    }
+
+    @media (max-width: 600px) {
+      .topbar { padding: 13px 20px; }
+      .brand-name { font-size: 21px; }
+      .topbar-note { max-width: 125px; font-size: 10px; }
+
+      .container { width: min(100% - 32px, 960px); }
+      .home-hero { padding: 48px 0 30px; }
+
+      .memory-grid { gap: 10px; }
+
+      .memory-card {
+        display: block;
+        min-height: 158px;
+        padding: 15px;
+      }
+
+      .card-icon {
+        width: 37px;
+        height: 37px;
+        margin-bottom: 11px;
+        font-size: 17px;
+      }
+
+      .card-copy h3 { font-size: 13px; }
+      .card-copy p { font-size: 11px; }
+      .card-arrow { right: 12px; bottom: 8px; }
+
+      .profile-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .profile-photo {
+        width: min(100%, 230px);
+        aspect-ratio: 3 / 4;
+      }
+
+      .gallery-grid, .visit-gallery { gap: 10px; }
+      .section-heading h2 { font-size: 23px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+/* ARTIKEL KRONOLOGI MUFI */
+
+.news-article {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: clamp(22px, 5vw, 48px);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  box-shadow: var(--shadow);
+}
+
+.article-header {
+  text-align: center;
+  padding-bottom: 28px;
+}
+
+.article-category {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--purple);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.article-title {
+  max-width: 680px;
+  margin: 0 auto 18px;
+  color: var(--dark-brown);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(29px, 5vw, 43px);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.article-subtitle {
+  max-width: 600px;
+  margin: 0 auto 22px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.article-divider {
+  width: 55px;
+  height: 2px;
+  margin: 0 auto 35px;
+  background: var(--purple);
+}
+
+.article-body {
+  color: #59483d;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.article-section-title {
+  margin: 38px 0 15px;
+  color: var(--dark-brown);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.article-section-title:first-child {
+  margin-top: 0;
+}
+
+.article-body p {
+  margin: 0 0 17px;
+  text-align: justify;
+}
+
+.article-quote {
+  margin: 24px 0;
+  padding: 16px 22px;
+  border-left: 3px solid var(--purple);
+  background: var(--purple-light);
+  color: #665675;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.article-image {
+  margin: 28px 0;
+}
+
+.article-image img {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.article-image figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+.article-footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.article-footer span {
+  color: var(--brown);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 18px;
+}
+
+.article-footer p {
+  margin: 5px 0 0;
+}
+
+@media (max-width: 600px) {
+  .news-article {
+    padding: 22px 18px;
+  }
+
+  .article-body p {
+    text-align: left;
+  }
+
+  .article-section-title {
+    font-size: 21px;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- HALAMAN KATA SANDI -->
+  <section id="lockScreen">
+    <div class="lock-card">
+      <div class="lock-symbol">♡</div>
+      <div class="eyebrow">A little place to remember</div>
+      <h1 class="serif">Ruang Mufi</h1>
+      <p class="lock-subtitle">
+        Ada beberapa kenangan yang ingin tetap kusimpan di sini.
+      </p>
+
+      <form id="passwordForm">
+        <input
+          id="passwordInput"
+          type="password"
+          placeholder="Masukkan kata sandi"
+          autocomplete="off"
+          aria-label="Kata sandi"
+          required
+        >
+        <button class="primary-button" type="submit">
+          Buka buku kenangan
+        </button>
+        <p id="passwordError" role="alert"></p>
+      </form>
+
+      <div class="lock-footer">DIBUAT DENGAN PENUH KENANGAN ♡</div>
+    </div>
+  </section>
+
+  <!-- WEBSITE UTAMA -->
+  <div id="website" class="hidden">
+    <header class="topbar">
+      <button class="brand" onclick="showHome()" aria-label="Kembali ke beranda">
+        <span class="brand-name">Ruang Mufi<span style="color:var(--purple)">.</span></span>
+        <span class="brand-caption">Sebuah tempat untuk mengenang</span>
+      </button>
+      <div class="topbar-note">Beberapa hal akan selalu punya tempatnya sendiri.</div>
+    </header>
+
+    <main>
+      <!-- BERANDA -->
+      <section id="homeView" class="container">
+        <div class="home-hero fade-in">
+          <div class="eyebrow">Untuk seseorang yang pernah berarti</div>
+          <h1 class="serif">Tentang kamu,<br>tentang Mufi.</h1>
+          <p>
+            Tidak semua hal bisa diceritakan kepada dunia.
+            Jadi, sebagian kusimpan di sini — dalam foto, cerita,
+            dan hal-hal kecil yang masih kuingat.
+          </p>
+          <span class="small-flower">✳</span>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <h2 class="serif">Buku kenangan</h2>
+            <p>Pilih bagian yang ingin kamu kunjungi.</p>
+          </div>
+        </div>
+
+        <div class="memory-grid" id="memoryGrid"></div>
+      </section>
+
+      <!-- HALAMAN KONTEN -->
+      <section id="pageView" class="container hidden"></section>
+    </main>
+
+    <footer>
+      <span class="footer-symbol">♡</span>
+      Ruang Mufi · Sebagian kenangan akan selalu tinggal.
+    </footer>
+  </div>
+
+  <script>
+    /*
+      PENGATURAN DASAR
+      Ganti judul, kata sandi, dan teks di bagian ini jika diperlukan.
+    */
+
+    const PASSWORD = "mufi1502";
+
+    const sections = [
+      {
+        id: "kronologi",
+        icon: "⌛",
+        title: "Kronologi Mufi",
+        description: "Urutan waktu dan momen-momen yang berarti.",
+        subtitle: "Sebuah perjalanan dalam potongan waktu.",
+        type: "timeline"
+      },
+      {
+        id: "galeri",
+        icon: "▧",
+        title: "Galeri Mufi",
+        description: "Foto dan video yang ingin terus disimpan.",
+        subtitle: "Ada momen yang sederhana, tetapi sulit dilupakan.",
+        type: "gallery"
+      },
+      {
+        id: "siapa-mufi",
+        icon: "♡",
+        title: "Siapa Mufi",
+        description: "Tentang kamu, hal-hal kecil, dan kesukaanmu.",
+        subtitle: "Mufi, sebagaimana yang kuingat.",
+        type: "profile"
+      },
+      {
+        id: "surat",
+        icon: "✉",
+        title: "Surat untuk Mufi",
+        description: "Hal-hal yang belum sempat disampaikan.",
+        subtitle: "Ada kata-kata yang tetap ingin kutuliskan.",
+        type: "letter"
+      },
+      {
+        id: "7-hari",
+        icon: "❀",
+        title: "7 Hari Mufi",
+        description: "Sebuah kunjungan dan kenangan.",
+        subtitle: "Catatan dari hari ketujuh.",
+        type: "visit7"
+      },
+      {
+        id: "40-hari",
+        icon: "❀",
+        title: "40 Hari Mufi",
+        description: "Foto-foto dari kunjungan berikutnya.",
+        subtitle: "Catatan dari hari keempat puluh.",
+        type: "visit40"
+      },
+      {
+        id: "100-hari",
+        icon: "❀",
+        title: "100 Hari Mufi",
+        description: "Kenangan yang ingin tetap tersimpan.",
+        subtitle: "Catatan dari hari keseratus.",
+        type: "visit100"
+      }
+    ];
+
+    /*
+      DATA KRONOLOGI
+      Tambahkan momen nanti dengan format:
+      { date: "Tanggal", title: "Judul", text: "Ceritanya" }
+    */
+
+
+const chronologyArticle = {
+  title: "Di Antara Soto, Leci, dan Toga Wisuda: Potongan Kisah Mufi yang Tertinggal",
+
+  subtitle:
+    "Dari perjalanan ke Thailand, hari-hari menjalani pengobatan, hingga percakapan sederhana bersama kakaknya. Sebuah catatan tentang Mufi, yang dikenang melalui hal-hal kecil dalam hidupnya.",
+
+  category: "KRONOLOGI MUFI",
+  date: "13 Oktober 2026",
+  author: "Rasya Syawal Pratama",
+
+  content: [
+    {
+      type: "heading",
+      text: "Perjalanan yang Berubah Setelah Pulang dari Thailand"
+    },
+    {
+      type: "paragraph",
+      text: "Pada September 2025, Mufi berkesempatan mengikuti program pertukaran pelajar ke Thailand. Namun, setelah kembali ke Indonesia, kondisi kesehatannya mulai mengalami perubahan."
+    },
+    {
+      type: "paragraph",
+      text: "Mufi mulai mengalami gangguan kesehatan yang pada awalnya disebut sebagai gejala radang usus, meskipun saat itu belum terdeteksi secara pasti. Keluhan asam lambung juga mulai muncul setelah kepulangannya."
+    },
+    {
+      type: "paragraph",
+      text: "Selama berada di Thailand, Mufi jarang makan. Makanan yang tersedia di sana kebanyakan bercita rasa asam, sehingga ia terkadang memilih makanan instan selama masih terjamin kehalalannya. Padahal, sehari-hari Mufi bukan orang yang terbiasa makan nugget, mi, ataupun sosis."
+    },
+    {
+      type: "paragraph",
+      text: "Ada satu cerita sederhana yang masih diingat ketika Mufi tiba di Bandara Juanda, Surabaya. Setelah dijemput oleh kakaknya, hal pertama yang diminta Mufi adalah makanan yang sudah lama ingin ia nikmati."
+    },
+    {
+      type: "quote",
+      text: "Mbak, aku pengen Soto!"
+    },
+    {
+      type: "paragraph",
+      text: "Kakaknya kemudian bertanya, \"Emang di sana gak ada Soto tah?\" Mufi menjawab singkat, \"Raono e Mbak.\""
+    },
+
+    {
+      type: "heading",
+      text: "Hari-Hari yang Dijalani Bersama Keluarga"
+    },
+    {
+      type: "paragraph",
+      text: "Di tengah kondisi kesehatannya, Mufi pernah bercerita kepada kakaknya tentang perjalanan hidup yang terasa tidak mudah."
+    },
+    {
+      type: "quote",
+      text: "Pas aku mau masuk kuliah, Ibu gak ada, ketika aku mau lulus, aku-nya yang sakit."
+    },
+    {
+      type: "paragraph",
+      text: "Setelah menjalani operasi ketiga, Mufi menjalani rawat jalan di rumah sambil tetap melakukan kontrol ke RSUD Sidoarjo. Kondisinya semakin menurun hingga ia harus menjalani bed rest."
+    },
+    {
+      type: "paragraph",
+      text: "Kakaknya terus memberikan semangat agar Mufi bisa kembali berjalan sendiri. Ia tidak ingin Mufi terus-menerus digendong."
+    },
+    {
+      type: "quote",
+      text: "Iki yang terakhir loh ya, kaki mu tuh gak kenopo-kenopo, kamu gak lumpuh, tak pegangin ayo, kamu bisa jalan."
+    },
+    {
+      type: "paragraph",
+      text: "Di rumah, kakaknya berusaha memenuhi berbagai keinginan Mufi. Hampir semua yang diminta dibelikan, selama barang atau makanan tersebut tersedia."
+    },
+    {
+      type: "paragraph",
+      text: "Pernah suatu kali Mufi ingin makan kepiting dan kelengkeng. Namun, keduanya tidak berhasil didapatkan. Untuk kelengkeng, akhirnya kakaknya menggantinya dengan leci."
+    },
+    {
+      type: "quote",
+      text: "Yowes Mbak, Leci wae."
+    },
+    {
+      type: "paragraph",
+      text: "Kakaknya bertanya, \"Nyari dimana Lecinya?\" Mufi menjawab, \"Iku loh Mbak, yang dipack-pack.\""
+    },
+
+    {
+      type: "heading",
+      text: "Perhatian yang Hadir dalam Hal-Hal Sederhana"
+    },
+    {
+      type: "paragraph",
+      text: "Keluarga Mufi juga berusaha melibatkan anak dari kakaknya dalam memberikan semangat. Suatu ketika, anak tersebut mengelus kepala dan dada Mufi. Kakaknya kemudian berkata, \"Doain Mbak Mufi ya semoga cepet sembuh.\""
+    },
+    {
+      type: "paragraph",
+      text: "Ada pula cerita ketika Galuh hendak mengganti bantal Mufi. Karena posisi bantal dirasa tidak pas, Mufi mencubit pipi Galuh. Setelah itu, Mufi justru meminta maaf."
+    },
+    {
+      type: "paragraph",
+      text: "Pada kesempatan lain, ketika kakaknya hendak memberikan bantal kepada Mufi, ia baru menyentuh Mufi. Namun, momen tersebut membuat kakaknya begitu sedih hingga memilih duduk di ruang tamu."
+    },
+    {
+      type: "paragraph",
+      text: "Ketika Lebaran, Mufi sebenarnya ingin mudik ke Blitar, ke keluarga ayahnya. Biasanya ia bepergian menggunakan kereta, tetapi kali itu ia tidak ingin naik kereta sehingga keluarga berusaha mencarikan mobil."
+    },
+    {
+      type: "quote",
+      text: "Jangan naik mobil e Mbak, aku takut perut ku kekocok."
+    },
+    {
+      type: "paragraph",
+      text: "Beberapa hari sebelum rencana pulang kampung, Mufi merasa kondisi perutnya semakin tidak kuat. Perjalanan tersebut pun akhirnya dibatalkan."
+    },
+
+    {
+      type: "heading",
+      text: "Harapan tentang Wisuda"
+    },
+    {
+      type: "paragraph",
+      text: "Di tengah pengobatan dan kondisinya yang terus menurun, Mufi masih sempat membicarakan sesuatu yang berkaitan dengan masa depannya: wisuda."
+    },
+    {
+      type: "quote",
+      text: "Mbak, aku kalo wisuda, gausah beli toga ya, minjem punya Mbak wae."
+    },
+    {
+      type: "paragraph",
+      text: "Kakaknya menjawab, \"Yowes pake wae, asal yang penting masih muat.\""
+    },
+    {
+      type: "paragraph",
+      text: "Percakapan itu mungkin terdengar sederhana. Mufi hanya membicarakan toga yang ingin dipinjam dari kakaknya. Namun, di balik percakapan tersebut, ada sebuah rencana tentang hari kelulusan yang masih sempat mereka bicarakan bersama."
+    },
+    {
+      type: "paragraph",
+      text: "Kakaknya memiliki harapan untuk tetap berada di sisi Mufi. Ia tidak ingin mengalami kehilangan seperti ketika ayah Mufi berpulang. Dahulu, ketika ayah Mufi berada di rumah sakit, kakaknya justru berada di rumah. Karena pengalaman itu, kali ini ia ingin menemani dan menjaga Mufi."
+    },
+
+    {
+      type: "heading",
+      text: "Menjelang Hari Terakhir"
+    },
+    {
+      type: "paragraph",
+      text: "Pada masa-masa terakhir sebelum Mufi berpulang, kondisi kesehatannya semakin berat. Ketika menjalani kontrol terakhir, kakaknya hendak memakaikan jaket. Saat itu Mufi terlihat kehabisan napas dan sempat mengalami kondisi yang mengkhawatirkan."
+    },
+    {
+      type: "paragraph",
+      text: "Kakaknya segera mendekat untuk memeriksa kondisinya. Keluarga yang semula berencana menggunakan mobil biasa akhirnya memutuskan untuk menggunakan ambulans."
+    },
+    {
+      type: "paragraph",
+      text: "Mufi kemudian sempat dirawat di HCU. Berdasarkan catatan keluarga, hasil pemeriksaan medis menunjukkan sejumlah kondisi yang sangat rendah, termasuk natrium, gula darah, dan hemoglobin. Nilai hemoglobinnya tercatat 1,8. Mufi juga mendapatkan tiga kali suntikan albumin. Setelah itu, nilainya sempat meningkat hingga akhirnya tercatat 2,8."
+    },
+    {
+      type: "paragraph",
+      text: "Selama tinggal di Surabaya, kakaknya sering menanyakan apakah Mufi sudah makan."
+    },
+    {
+      type: "quote",
+      text: "Pean wes maam?"
+    },
+    {
+      type: "paragraph",
+      text: "Mufi menjawab, \"Wes Mbak.\" Kakaknya kemudian melanjutkan, \"Maam opo?\""
+    },
+    {
+      type: "paragraph",
+      text: "Ketika sakit, Mufi sering makan nasi telur. Namun, ia cepat merasa kenyang. Keluarga mencoba menggantinya dengan sumber karbohidrat lain seperti kentang, tetapi Mufi tidak menyukainya."
+    },
+    {
+      type: "paragraph",
+      text: "Seminggu sebelum berpulang, Mufi masih memiliki selera makan dan masih memilih-milih makanan. Kakaknya berusaha membelikan apa pun yang diinginkannya."
+    },
+    {
+      type: "paragraph",
+      text: "Namun, menurut cerita kakaknya, perubahan mulai terlihat ketika memasuki minggu terakhir. Mufi yang biasanya masih bisa menolak atau menyampaikan keinginannya, perlahan menjadi lebih menurut. Ketika diajak bicara, jawabannya sering kali hanya, \"Iyo Mbak, iyo Mbak.\""
+    },
+    {
+      type: "paragraph",
+      text: "Setiap dua hingga tiga jam sekali, Mufi sering meminta bantuan, misalnya untuk mengambilkan kipas atau minum. Karena harus berulang kali bangun, kakaknya akhirnya mengatakan:"
+    },
+    {
+      type: "quote",
+      text: "Pean kalo minta tolong yang bukan urusan tubuhmu, pean minta tolong suami Mbak wae, tapi kalo pean minta tolong yang urusan sama tubuhmu, baru pean bangunin aku."
+    },
+    {
+      type: "paragraph",
+      text: "Mufi menjawab, \"Iyo Mbak.\""
+    },
+    {
+      type: "paragraph",
+      text: "Keesokan harinya, kakaknya bertanya bagaimana keadaan Mufi semalam."
+    },
+    {
+      type: "quote",
+      text: "Gimana semalem, pean minta tolong opo wae?"
+    },
+    {
+      type: "paragraph",
+      text: "Mufi menjawab, \"Piye Mbak, pules tidur e.\" Jawaban itu membekas di hati kakaknya. Sebuah percakapan singkat yang mungkin terdengar biasa, tetapi memiliki arti tersendiri bagi orang yang mendengarnya."
+    },
+
+    {
+      type: "heading",
+      text: "25–26 Juni 2026: Hari-Hari Terakhir Mufi"
+    },
+    {
+      type: "paragraph",
+      text: "Pada Kamis, 25 Juni 2026, sehari sebelum Mufi berpulang, kakaknya sempat mengatakan bahwa kondisi Mufi sepertinya sudah sangat mengkhawatirkan."
+    },
+    {
+      type: "quote",
+      text: "Kalo anaknya kayaknya udah bakal gak ada."
+    },
+    {
+      type: "paragraph",
+      text: "Suami kakaknya menjawab, \"Mumpung besok hari baik, ya kita berdoa saja.\""
+    },
+    {
+      type: "paragraph",
+      text: "Keesokan paginya, sekitar pukul tujuh, Mufi sudah tidak sadarkan diri. Hasil pemeriksaan di HCU masih menunjukkan kondisi yang buruk. Menjelang pukul sembilan pagi, sekitar pukul 08.30 ke atas, Mufi berpulang."
+    },
+    {
+      type: "paragraph",
+      text: "Kabar tersebut kemudian menjadi awal dari rangkaian persiapan di rumah duka. Sekitar pukul sepuluh, jenazah tiba di rumah. Setelah itu, keluarga melaksanakan proses memandikan, mengafani, dan menyalatkan Mufi. Salat jenazah untuk keluarga perempuan dilaksanakan di rumah, sedangkan setelah salat Jumat, jenazah kembali disalatkan di masjid oleh para laki-laki."
+    },
+    {
+      type: "paragraph",
+      text: "Sebelumnya, kakak Mufi memiliki satu keinginan: jika suatu saat Mufi berpulang, ia ingin Mufi dimakamkan dekat ayah dan ibunya. Ia tidak ingin Mufi sendirian. Makam ayah dan ibunya berada di area yang berdekatan, begitu pula makam tante-tante Mufi."
+    },
+
+    {
+      type: "heading",
+      text: "Tentang Mufi"
+    },
+    {
+      type: "paragraph",
+      text: "Riwayat ini tidak hanya berisi catatan tentang perjalanan pengobatan dan hari-hari terakhir Mufi. Di dalamnya ada cerita tentang makanan yang dirindukan, leci pengganti kelengkeng, bantal yang harus diperbaiki posisinya, toga wisuda yang ingin dipinjam, serta pertanyaan sederhana tentang sudah makan atau belum."
+    },
+    {
+      type: "paragraph",
+      text: "Hal-hal itu mungkin tampak kecil jika dibaca satu per satu. Namun, bagi keluarga yang menjalaninya, setiap percakapan dan kebiasaan tersebut menyimpan cerita tersendiri."
+    },
+    {
+      type: "paragraph",
+      text: "Dari cerita-cerita itulah Mufi dikenang: bukan hanya melalui peristiwa besar dalam hidupnya, tetapi juga melalui hal-hal sederhana yang pernah ia lakukan dan ucapkan."
+    }
+  ]
+};
+
+
+// JANGAN UBAH BAGIAN FUNGSI DI BAWAH INI
+// kecuali kamu sudah paham cara kerja JavaScript-nya.
+
+function renderChronologyArticle() {
+  const article = chronologyArticle;
+
+  const contentHTML = article.content.map(item => {
+    if (item.type === "heading") {
+      return `<h2 class="article-section-title">${item.text}</h2>`;
+    }
+
+    if (item.type === "paragraph") {
+      return `<p>${item.text}</p>`;
+    }
+
+    if (item.type === "quote") {
+      return `<blockquote class="article-quote">${item.text}</blockquote>`;
+    }
+
+    if (item.type === "image") {
+      return `
+        <figure class="article-image">
+          <img src="${item.src}" alt="${item.caption || "Foto kenangan Mufi"}">
+          ${item.caption ? `<figcaption>${item.caption}</figcaption>` : ""}
+        </figure>
+      `;
+    }
+
+    return "";
+  }).join("");
+
+  return `
+    <article class="news-article">
+      <header class="article-header">
+        <span class="article-category">${article.category}</span>
+        <h1 class="article-title">${article.title}</h1>
+        <p class="article-subtitle">${article.subtitle}</p>
+
+        <div class="article-meta">
+          <span>Ditulis oleh ${article.author}</span>
+          <span>${article.date}</span>
+        </div>
+      </header>
+
+      <div class="article-divider"></div>
+
+      <div class="article-body">
+        ${contentHTML}
+      </div>
+
+      <footer class="article-footer">
+        <span>Ruang Mufi</span>
+        <p>Sebuah ruang untuk menyimpan cerita dan kenangan.</p>
+      </footer>
+    </article>
+  `;
+}
+
+    /*
+      DATA GALERI
+      Taruh foto di folder assets/images/
+      Taruh video di folder assets/videos/
+      Contoh format ada di bawah ini.
+    */
+
+    const galleryData = [
+      // { type: "image", src: "assets/images/mufi-1.jpg", caption: "Keterangan foto" },
+      // { type: "video", src: "assets/videos/mufi-1.mp4", caption: "Keterangan video" }
+    ];
+
+    /*
+      PROFIL MUFI
+      Isi bagian kosong kalau kamu sudah siap.
+      Foto profil: assets/images/mufi-profile.jpg
+    */
+
+    const profileData = {
+      photo: "assets/images/mufi-profile.jpg",
+      introduction: "",
+      nickname: "",
+      birthday: "",
+      favoriteColor: "Cokelat",
+      favoriteThings: "",
+      littleThings: "",
+      quote: ""
+    };
+
+    /*
+      SURAT UNTUK MUFI
+      Kamu tidak perlu mengisinya sekarang.
+    */
+
+    const letterData = {
+      greeting: "Hai, Mufi.",
+      paragraphs: [
+        "Ada banyak hal yang ingin kutuliskan, tetapi untuk sekarang, biarlah halaman ini menjadi tempatnya.",
+        "Nanti, kalau aku sudah siap, akan kutambahkan cerita-cerita yang belum sempat kusampaikan."
+      ],
+      signature: "— dari seseorang yang mengingatmu"
+    };
+
+    /*
+      FOTO KUNJUNGAN MAKAM
+      Gunakan daftar terpisah untuk hari ke-7, 40, dan 100.
+      Contoh:
+      { src: "assets/images/kunjungan-7-hari-1.jpg", caption: "Kunjungan hari ketujuh" }
+    */
+
+    const visitData = {
+      "7-hari": [],
+      "40-hari": [],
+      "100-hari": []
+    };
+
+    // MEMBUAT KARTU BERANDA
+
+    const memoryGrid = document.getElementById("memoryGrid");
+
+    function renderCards() {
+      memoryGrid.innerHTML = sections.map(section => `
+        <button class="memory-card" onclick="openSection('${section.id}')">
+          <span class="card-icon">${section.icon}</span>
+          <span class="card-copy">
+            <h3>${section.title}</h3>
+            <p>${section.description}</p>
+          </span>
+          <span class="card-arrow">↗</span>
+        </button>
+      `).join("");
+    }
+
+    // KATA SANDI DAN TRANSISI
+
+    const lockScreen = document.getElementById("lockScreen");
+    const website = document.getElementById("website");
+    const passwordForm = document.getElementById("passwordForm");
+    const passwordInput = document.getElementById("passwordInput");
+    const passwordError = document.getElementById("passwordError");
+
+    passwordForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      if (passwordInput.value === PASSWORD) {
+        passwordError.textContent = "";
+        lockScreen.classList.add("opening");
+
+        setTimeout(() => {
+          lockScreen.classList.add("hidden");
+          website.classList.remove("hidden");
+
+          requestAnimationFrame(() => {
+            website.classList.add("visible");
+          });
+
+          showHome();
+        }, 650);
+      } else {
+        passwordError.textContent = "Kata sandinya belum tepat. Coba lagi, ya.";
+        passwordInput.value = "";
+        passwordInput.focus();
+      }
+    });
+
+    // NAVIGASI
+
+    function showHome() {
+      document.getElementById("homeView").classList.remove("hidden");
+      document.getElementById("pageView").classList.add("hidden");
+      document.getElementById("homeView").classList.add("fade-in");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openSection(id) {
+      const section = sections.find(item => item.id === id);
+      if (!section) return;
+
+      const homeView = document.getElementById("homeView");
+      const pageView = document.getElementById("pageView");
+
+      homeView.classList.add("hidden");
+      pageView.classList.remove("hidden");
+      pageView.innerHTML = `
+        <button class="back-button" onclick="showHome()">← Kembali ke buku kenangan</button>
+        <div class="eyebrow">${section.title}</div>
+        <h1 class="page-title serif">${section.title}</h1>
+        <p class="page-description">${section.subtitle}</p>
+        <div id="sectionContent"></div>
+      `;
+
+      const content = document.getElementById("sectionContent");
+
+      switch (section.type) {
+case "timeline":
+  renderChronologyArticle(content);
+  break;
+        case "gallery":
+          renderGallery(content);
+          break;
+        case "profile":
+          renderProfile(content);
+          break;
+        case "letter":
+          renderLetter(content);
+          break;
+        case "visit7":
+        case "visit40":
+        case "visit100":
+          renderVisit(content, id);
+          break;
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+// ISI KRONOLOGI MUFI
+
+function renderChronologyArticle(target) {
+  const article = chronologyArticle;
+
+  const contentHTML = article.content.map(item => {
+    if (item.type === "heading") {
+      return `<h2 class="article-section-title">${escapeHTML(item.text)}</h2>`;
+    }
+
+    if (item.type === "paragraph") {
+      return `<p>${escapeHTML(item.text)}</p>`;
+    }
+
+    if (item.type === "quote") {
+      return `<blockquote class="article-quote">${escapeHTML(item.text)}</blockquote>`;
+    }
+
+    if (item.type === "image") {
+      return `
+        <figure class="article-image">
+          <img src="${safeSrc(item.src)}" alt="${escapeHTML(item.caption || "Foto kenangan Mufi")}">
+          ${item.caption ? `<figcaption>${escapeHTML(item.caption)}</figcaption>` : ""}
+        </figure>
+      `;
+    }
+
+    return "";
+  }).join("");
+
+  target.innerHTML = `
+    <article class="news-article">
+      <header class="article-header">
+        <span class="article-category">${escapeHTML(article.category)}</span>
+        <h1 class="article-title">${escapeHTML(article.title)}</h1>
+        <p class="article-subtitle">${escapeHTML(article.subtitle)}</p>
+
+        <div class="article-meta">
+          <span>Ditulis oleh ${escapeHTML(article.author)}</span>
+          <span>${escapeHTML(article.date)}</span>
+        </div>
+      </header>
+
+      <div class="article-divider"></div>
+
+      <div class="article-body">
+        ${contentHTML}
+      </div>
+
+      <footer class="article-footer">
+        <span>Ruang Mufi</span>
+        <p>Sebuah ruang untuk menyimpan cerita dan kenangan.</p>
+      </footer>
+    </article>
+  `;
+}
+
+    // ISI GALERI
+
+    function renderGallery(target) {
+      if (!galleryData.length) {
+        target.innerHTML = `
+          <div class="empty-state">
+            <span class="empty-icon">▧</span>
+            <strong>Tempat untuk foto dan video Mufi.</strong>
+            Galeri ini akan terisi saat kamu menambahkan media ke kode.
+          </div>
+        `;
+        return;
+      }
+
+      target.innerHTML = `
+        <div class="gallery-grid">
+          ${galleryData.map(item => `
+            <figure class="gallery-item">
+              ${item.type === "video"
+                ? `<video src="${safeSrc(item.src)}" controls preload="metadata"></video>`
+                : `<img src="${safeSrc(item.src)}" alt="${escapeHTML(item.caption || "Kenangan Mufi")}" loading="lazy">`
+              }
+              <figcaption>${escapeHTML(item.caption || "Sebuah kenangan")}</figcaption>
+            </figure>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    // PROFIL MUFI
+
+    function renderProfile(target) {
+      const p = profileData;
+      const facts = [
+        ["Nama panggilan", p.nickname],
+        ["Ulang tahun", p.birthday],
+        ["Warna kesukaan", p.favoriteColor],
+        ["Hal yang disukai", p.favoriteThings]
+      ].filter(item => item[1]);
+
+      target.innerHTML = `
+        <div class="content-paper">
+          <div class="profile-layout">
+            <img
+              class="profile-photo"
+              src="${safeSrc(p.photo)}"
+              alt="Foto Mufi"
+              onerror="this.style.display='none'"
+            >
+            <div class="profile-details">
+              <h3 class="serif">Tentang Mufi</h3>
+              <p>${escapeHTML(p.introduction || "Tentang Mufi akan kutuliskan di sini, saat aku sudah siap bercerita.")}</p>
+
+              ${facts.length ? `
+                <div class="profile-facts">
+                  ${facts.map(([label, value]) => `
+                    <span>${escapeHTML(label)}</span>
+                    <span>${escapeHTML(value)}</span>
+                  `).join("")}
+                </div>
+              ` : ""}
+
+              ${p.littleThings ? `<p><strong>Hal-hal kecil:</strong><br>${escapeHTML(p.littleThings)}</p>` : ""}
+              ${p.quote ? `<p><em>“${escapeHTML(p.quote)}”</em></p>` : ""}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // SURAT UNTUK MUFI
+
+    function renderLetter(target) {
+      target.innerHTML = `
+        <article class="content-paper letter-paper">
+          <p class="letter-greeting">${escapeHTML(letterData.greeting)}</p>
+          ${letterData.paragraphs.map(paragraph => `
+            <p>${escapeHTML(paragraph)}</p>
+          `).join("")}
+          <p class="letter-signature">${escapeHTML(letterData.signature)}</p>
+        </article>
+      `;
+    }
+
+    // FOTO KUNJUNGAN 7 / 40 / 100 HARI
+
+    function renderVisit(target, id) {
+      const photos = visitData[id] || [];
+
+      if (!photos.length) {
+        target.innerHTML = `
+          <div class="empty-state">
+            <span class="empty-icon">❀</span>
+            <strong>Catatan kunjungan.</strong>
+            Foto-foto saat kamu mengunjungi Mufi akan disimpan di bagian ini.
+            <br><br>
+            Tidak perlu banyak kata. Foto saja sudah cukup untuk mengingat.
+          </div>
+        `;
+        return;
+      }
+
+      target.innerHTML = `
+        <div class="visit-gallery">
+          ${photos.map(photo => `
+            <figure class="visit-photo">
+              <img src="${safeSrc(photo.src)}" alt="${escapeHTML(photo.caption || "Foto kunjungan")}" loading="lazy">
+              <p>${escapeHTML(photo.caption || "Sebuah kunjungan")}</p>
+            </figure>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    // UTILITAS
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[character]);
+    }
+
+    function safeSrc(value) {
+      // Path lokal untuk media yang kamu simpan di folder proyek.
+      // Jangan masukkan alamat file atau URL dari sumber yang tidak tepercaya.
+      return escapeHTML(value || "");
+    }
+
+    renderCards();
+  </script>
+</body>
+</html>
