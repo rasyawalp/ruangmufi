@@ -1139,6 +1139,27 @@
     font-size: 22px;
   }
 }
+
+.letter-cover-image {
+  width: 100%;
+  max-width: 650px;
+  margin: 25px auto;
+  text-align: center;
+}
+
+.letter-cover-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+.letter-article-body p {
+  white-space: pre-line;
+  line-height: 1.9;
+}
   </style>
 </head>
 
@@ -1824,6 +1845,39 @@ function renderChronologyArticle() {
 // ke dalam array letterArticles.
 
 const letterArticles = [
+{
+  id: "pesan-terakhir-mufi",
+  title: "Pesan Terakhir Mufi",
+  subtitle: "Sebuah pesan terakhir yang ingin selalu dikenang.",
+  category: "SURAT UNTUK MUFI",
+  author: "Mufi",
+  date: "Pesan Terakhir",
+
+  coverImage: "pesanterakhir.jpg",
+
+  content: [
+    {
+      type: "paragraph",
+      text: `hi cantik🥰🌸🫣
+
+lgi bingung ya tidur posisi mana?? padhl
+
+kemarin tidur nyaman disana. semua sedikit
+
+berantakan..
+
+3 kali, yg terakhir benar" tubuh kyk jadi api
+
+kadang es.
+
+liat orang" lari, canda, tawa (dlm mimpi).
+
+sadar kalau diperut ada perban yg sensitif..
+
+minta doanya yaa yg terbaik untukku🌸🙏🥹`
+    }
+  ]
+},
   {
     id: "haii-mufiii",
 
@@ -3009,6 +3063,16 @@ if (item.type === "video") {
           ${escapeHTML(article.title)}
         </h1>
 
+${article.image ? `
+  <figure class="article-image letter-cover-image">
+    <img
+      src="${safeSrc(article.image)}"
+      alt="Pesan terakhir Mufi"
+      onerror="this.parentElement.style.display='none'; console.error('Foto gagal dimuat:', this.src)"
+    >
+  </figure>
+` : ""}
+
         <p class="article-subtitle">
           ${escapeHTML(article.subtitle)}
         </p>
@@ -3373,6 +3437,17 @@ function openLetter(id) {
           ${escapeHTML(article.title)}
         </h2>
 
+${article.coverImage ? `
+  <figure class="article-image">
+    <img
+      src="${safeSrc(article.coverImage)}"
+      alt="${escapeHTML(article.title)}"
+      loading="eager"
+      onerror="console.error('Foto gagal dimuat:', this.src)"
+    >
+  </figure>
+` : ""}
+
         <p class="article-subtitle">
           ${escapeHTML(article.subtitle || "")}
         </p>
@@ -3389,10 +3464,12 @@ function openLetter(id) {
         ${contentHTML}
       </div>
 
-      <footer class="article-footer">
-        <span>Untuk Mufi ♡</span>
-        <p>Sebuah surat yang ditulis dengan penuh kenangan.</p>
-      </footer>
+<footer class="article-footer">
+  <span>
+    ${article.id === "pesan-terakhir-mufi" ? "Dari Mufi ♡" : "Untuk Mufi ♡"}
+  </span>
+  <p>Sebuah surat yang ditulis dengan penuh kenangan.</p>
+</footer>
     </article>
   `;
 
@@ -3469,6 +3546,15 @@ function renderLetterArticle(target, article) {
         <h1 class="article-title">
           ${escapeHTML(article.title)}
         </h1>
+
+${article.coverImage ? `
+  <div class="letter-cover-image">
+    <img
+      src="${escapeHTML(article.coverImage)}"
+      alt="Pesan terakhir Mufi"
+    >
+  </div>
+` : ""}
 
         <p class="article-subtitle">
           ${escapeHTML(article.subtitle)}
