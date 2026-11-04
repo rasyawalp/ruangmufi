@@ -985,6 +985,88 @@
   font-size: 11px;
   text-align: center;
 }
+
+/* DAFTAR SURAT */
+
+.letter-list {
+  max-width: 780px;
+  margin: 25px auto;
+  display: grid;
+  gap: 14px;
+}
+
+.letter-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px;
+  text-align: left;
+  color: var(--dark-brown);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.letter-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: var(--purple);
+}
+
+.letter-card-icon {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--purple-light);
+  color: var(--purple);
+  font-size: 21px;
+}
+
+.letter-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.letter-card-content h3 {
+  margin: 0 0 6px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.letter-card-content p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.letter-card-meta {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.letter-card-arrow {
+  color: var(--purple);
+  font-size: 21px;
+}
+
+@media (max-width: 600px) {
+  .letter-card {
+    padding: 17px;
+    gap: 13px;
+  }
+
+  .letter-card-content h3 {
+    font-size: 18px;
+  }
+}
   </style>
 </head>
 
@@ -1034,7 +1116,7 @@
       <section id="homeView" class="container">
         <div class="home-hero fade-in">
           <div class="eyebrow">Untuk seseorang yang pernah berarti</div>
-          <h1 class="serif">Tentang kamu,<br>tentang Mufi.</h1>
+          <h1 class="serif">Ruang Mufi,<br>tentang Mufi.</h1>
           <p>
             Tidak semua hal bisa diceritakan kepada dunia.
             Jadi, sebagian kusimpan di sini — dalam foto, cerita,
@@ -1723,32 +1805,23 @@ const letterArticles = [
         type: "paragraph",
         text: "Aku juga sempat sowan ke kakakmu, Mufi. Tapi waktu itu aku sama sekali tidak terpikir untuk memberikan sesuatu. Otakku benar-benar blank, kosong. Maaf ya, Kak, kalau suatu saat membaca bagian ini. Hehehe."
       },
-
-      {
-        type: "paragraph",
-        text: "Sampai sekarang, kalau aku sedang teringat kamu, biasanya ceritanya langsung ke Galuh. Kadang kalau bangun tidur aku juga kaget melihat ada tulisan '100+ pesan dari Kak Rasya'. Hahaha. Lucu ya, Muf?"
-      },
-      {
-        type: "paragraph",
-        text: "Oh iya, Muf, tadi aku ke makam kamu. Aku dan Galuh banyak ngobrol, bahkan beberapa kali bercanda seolah-olah kamu masih ada di antara kami. Jujur, saat ngobrol di makam tadi aku benar-benar merasa seperti sedang bertiga: aku, Galuh, dan kamu."
-      },
-      {
-        type: "paragraph",
-        text: "Aku juga membawa oleh-oleh krokot untuk makam kamu. Semoga bisa tumbuh subur dan bagus, ya. Itu aku tanam sendiri dari rumah, loh."
-      },
-
-      {
-        type: "paragraph",
-        text: "Waktu kamu wisuda kemarin, sebenarnya aku ingin mengucapkan happy graduation. Tapi aku bingung bagaimana cara mengucapkannya. Rasanya kata-kata yang ingin kusampaikan tidak bisa begitu saja diketik."
-      },
-      {
-        type: "paragraph",
-        text: "Aku juga melihat story Unesa. Kakakmu yang menggantikan kamu saat wisuda. Kamu pasti juga hadir di sana, kannn?"
-      },
-      {
-        type: "paragraph",
-        text: "Aku pernah bilang begini ke Galuh: 'Aku percaya kalau kamu, Galuh, menikah nanti, Mufi pasti datang. Bisa jadi dalam bentuk kupu-kupu yang menghampirimu.' Karena itu, aku percaya kamu juga pasti datang saat wisudamu kemarin."
-      },
+{
+  type: "paragraph",
+  text: "Waktu kamu wisuda kemarin, sebenarnya aku ingin mengucapkan happy graduation. Tapi aku bingung bagaimana cara mengucapkannya. Rasanya kata-kata yang ingin kusampaikan tidak bisa begitu saja diketik."
+},
+{
+  type: "paragraph",
+  text: "Aku juga melihat story Unesa. Kakakmu yang menggantikan kamu saat wisuda. Kamu pasti juga hadir di sana, kannn?"
+},
+{
+  type: "image",
+  src: "1surat1.webp",
+  caption: "Kakak Mufi menggantikan wisuda Mufi."
+},
+{
+  type: "paragraph",
+  text: "Aku pernah bilang begini ke Galuh: 'Aku percaya kalau kamu, Galuh, menikah nanti, Mufi pasti datang. Bisa jadi dalam bentuk kupu-kupu yang menghampirimu.' Karena itu, aku percaya kamu juga pasti datang saat wisudamu kemarin."
+},
       {
         type: "paragraph",
         text: "Happy graduation ya, Mufiii. Dulu kamu sudah semangat sekali bertanya kepadaku tentang penelitian. Tapi setelah mendengar cerita dari kakakmu dan cerita Galuh dari sudut pandangnya tentang perjalanan hidupmu, aku jadi tidak bisa berkata apa-apa. Ya, benar kata kakakmu: itu memang kemauan Mufi."
@@ -2304,9 +2377,9 @@ case "gallery":
     renderSiapaMufiArticle(content);
     break;
 
-  case "letter":
-    renderLetter(content);
-    break;
+case "letter":
+  renderLetterList(content);
+  break;
 
 case "visit7":
   renderSevenDayArticle(content);
@@ -2648,59 +2721,120 @@ function renderGalleryLock(target) {
 
     // SURAT UNTUK MUFI
 
-// MENAMPILKAN DAFTAR SURAT
+// DAFTAR SURAT UNTUK MUFI
 
-function renderLetter(target) {
-  if (!letterArticles.length) {
-    target.innerHTML = `
-      <div class="empty-state">
-        <span class="empty-icon">✉</span>
-        <strong>Belum ada surat untuk Mufi.</strong>
-        Tulisan-tulisan berikutnya akan disimpan di sini.
-      </div>
-    `;
-    return;
-  }
-
+function renderLetterList(target) {
   target.innerHTML = `
     <div class="letter-list">
+      ${letterArticles.map(article => `
+        <button
+          class="letter-card"
+          onclick="openLetter('${escapeHTML(article.id)}')"
+        >
+          <span class="letter-card-icon">✉</span>
 
-      <p class="letter-list-intro">
-        Beberapa kata mungkin belum sempat disampaikan.
-        Jadi, semuanya kusimpan di sini, satu surat demi satu surat.
-      </p>
+          <div class="letter-card-content">
+            <h3>${escapeHTML(article.title)}</h3>
+            <p>${escapeHTML(article.subtitle || "")}</p>
 
-      <div class="letter-list-grid">
-        ${letterArticles.map((article, index) => `
-          <button
-            class="letter-list-card"
-            onclick="openLetterArticle('${escapeHTML(article.id)}')"
-          >
-            <span class="letter-card-number">
-              SURAT ${String(index + 1).padStart(2, "0")}
-            </span>
+            <div class="letter-card-meta">
+              ${escapeHTML(article.date || "")}
+              ${article.author ? ` · ${escapeHTML(article.author)}` : ""}
+            </div>
+          </div>
 
-            <span class="letter-card-title">
-              ${escapeHTML(article.title)}
-            </span>
-
-            <span class="letter-card-subtitle">
-              ${escapeHTML(article.subtitle)}
-            </span>
-
-            <span class="letter-card-date">
-              ${escapeHTML(article.date)}
-            </span>
-
-            <span class="letter-card-arrow">↗</span>
-          </button>
-        `).join("")}
-      </div>
-
+          <span class="letter-card-arrow">→</span>
+        </button>
+      `).join("")}
     </div>
   `;
 }
 
+
+// MEMBUKA ISI SURAT
+
+function openLetter(id) {
+  const article = letterArticles.find(item => item.id === id);
+
+  if (!article) return;
+
+  const target = document.getElementById("sectionContent");
+
+  const contentHTML = article.content.map(item => {
+    if (item.type === "paragraph") {
+      return `<p>${escapeHTML(item.text)}</p>`;
+    }
+
+    if (item.type === "heading") {
+      return `<h3 class="article-section-title">${escapeHTML(item.text)}</h3>`;
+    }
+
+    if (item.type === "quote") {
+      return `<blockquote class="article-quote">${escapeHTML(item.text)}</blockquote>`;
+    }
+
+    if (item.type === "image") {
+      return `
+        <figure class="article-image">
+          <img
+            src="${safeSrc(item.src)}"
+            alt="${escapeHTML(item.caption || article.title)}"
+            loading="lazy"
+            onerror="this.closest('figure').style.display='none'"
+          >
+          ${item.caption ? `
+            <figcaption>${escapeHTML(item.caption)}</figcaption>
+          ` : ""}
+        </figure>
+      `;
+    }
+
+    return "";
+  }).join("");
+
+  target.innerHTML = `
+    <button
+      class="back-button"
+      onclick="renderLetterList(document.getElementById('sectionContent'))"
+    >
+      ← Kembali ke daftar surat
+    </button>
+
+    <article class="news-article">
+      <header class="article-header">
+        <span class="article-category">
+          ${escapeHTML(article.category || "SURAT UNTUK MUFI")}
+        </span>
+
+        <h2 class="article-title">
+          ${escapeHTML(article.title)}
+        </h2>
+
+        <p class="article-subtitle">
+          ${escapeHTML(article.subtitle || "")}
+        </p>
+
+        <div class="article-meta">
+          <span>${escapeHTML(article.author || "")}</span>
+          <span>${escapeHTML(article.date || "")}</span>
+        </div>
+      </header>
+
+      <div class="article-divider"></div>
+
+      <div class="article-body">
+        ${contentHTML}
+      </div>
+
+      <footer class="article-footer">
+        <span>Untuk Mufi ♡</span>
+        <p>Sebuah surat yang ditulis dengan penuh kenangan.</p>
+      </footer>
+    </article>
+  `;
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
 // MEMBUKA SURAT YANG DIPILIH
 
