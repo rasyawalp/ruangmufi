@@ -1067,6 +1067,78 @@
     font-size: 18px;
   }
 }
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  padding-right: 48px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 19px;
+  padding: 5px;
+}
+
+.toggle-password:hover {
+  color: var(--purple);
+}
+
+/* BUTTON BACK TO TOP */
+.back-to-top {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: var(--purple);
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+  filter: brightness(1.1);
+}
+
+@media (max-width: 600px) {
+  .back-to-top {
+    width: 43px;
+    height: 43px;
+    right: 16px;
+    bottom: 18px;
+    font-size: 22px;
+  }
+}
   </style>
 </head>
 
@@ -1083,14 +1155,23 @@
       </p>
 
       <form id="passwordForm">
-        <input
-          id="passwordInput"
-          type="password"
-          placeholder="Masukkan kata sandi"
-          autocomplete="off"
-          aria-label="Kata sandi"
-          required
-        >
+<div class="password-wrapper">
+  <input
+    id="passwordInput"
+    type="password"
+    placeholder="Masukkan kata sandi"
+    autocomplete="off"
+    aria-label="Kata sandi"
+    required
+  >
+
+  <button
+    type="button"
+    class="toggle-password"
+    onclick="togglePassword('passwordInput', this)"
+    aria-label="Tampilkan kata sandi"
+  >👁</button>
+</div>
         <button class="primary-button" type="submit">
           Buka buku kenangan
         </button>
@@ -1143,6 +1224,16 @@
       <span class="footer-symbol">♡</span>
       Ruang Mufi · Sebagian kenangan akan selalu tinggal.
     </footer>
+
+<button
+  type="button"
+  id="backToTop"
+  class="back-to-top"
+  aria-label="Kembali ke atas"
+  title="Kembali ke atas"
+>
+  ↑
+</button>
   </div>
 
   <script>
@@ -2613,13 +2704,22 @@ function renderGalleryLock(target) {
       </p>
 
       <form id="galleryPasswordForm">
-        <input
-          id="galleryPasswordInput"
-          type="password"
-          placeholder="Masukkan kata sandi"
-          autocomplete="off"
-          required
-        >
+<div class="password-wrapper">
+  <input
+    id="galleryPasswordInput"
+    type="password"
+    placeholder="Masukkan kata sandi"
+    autocomplete="off"
+    required
+  >
+
+  <button
+    type="button"
+    class="toggle-password"
+    onclick="togglePassword('galleryPasswordInput', this)"
+    aria-label="Tampilkan kata sandi"
+  >👁</button>
+</div>
 
         <button type="submit" class="primary-button">
           Buka Galeri
@@ -2992,6 +3092,43 @@ function renderLetterArticle(target, article) {
     }
 
     renderCards();
+
+function togglePassword(inputId, button) {
+  const input = document.getElementById(inputId);
+
+  if (!input) return;
+
+  if (input.type === "password") {
+    input.type = "text";
+    button.textContent = "🙈";
+    button.setAttribute("aria-label", "Sembunyikan kata sandi");
+  } else {
+    input.type = "password";
+    button.textContent = "👁";
+    button.setAttribute("aria-label", "Tampilkan kata sandi");
+  }
+}
+
+// BUTTON BACK TO TOP
+
+const backToTopButton = document.getElementById("backToTop");
+
+// Tampilkan tombol saat halaman digulir
+window.addEventListener("scroll", function() {
+  if (window.scrollY > 260) {
+    backToTopButton.classList.add("show");
+  } else {
+    backToTopButton.classList.remove("show");
+  }
+});
+
+// Kembali ke bagian paling atas
+backToTopButton.addEventListener("click", function() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
   </script>
 </body>
 </html>
